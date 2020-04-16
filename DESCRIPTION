@@ -1,0 +1,17 @@
+Package: valleybike
+Title: ValleyBike.org Data Package and Helper Functions
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nicholas J.",
+           family = "Horton",
+           role = c("aut", "cre"),
+           email = "nhorton@amherst.edu")
+    person(given = "Maria-Cristiana",
+           family = "Girjau",
+           role = c("aut", "cre"),
+           email = "mgirjau21@amherst.edu"),
+Description: A variety of utility functions and sample data for exploring bike activity in the Pioneer Valley.
+Encoding: UTF-8
+LazyData: true
+Imports:
+  dplyr
