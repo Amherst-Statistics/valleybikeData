@@ -26,3 +26,26 @@
 #' @format A 118,848 x 12 data frame
 #' @keywords datasets
 NULL
+
+#' ValleyBike stations (as of mid-2020)
+#'
+#' This data set is contains information on the 54 ValleyBike stations.
+#'
+#' @section Variables:
+#' \itemize{
+#'  \item serial_num <int>, the station's serial number (primary key)
+#'  \item name <chr>, the station's name
+#'  \item address <chr> the station's address
+#'  \item city <chr>, the city in which the station is
+#'  \item latitude <dbl>, the station'slatitude
+#'  \item longitude <dbl>, the station's longitude
+#'  \item docks <int>, the number of bike docks at the station
+#'  \item display <chr>, display name for the station (usually name + city)
+#' }
+#'
+#' @docType data
+#' @name stations
+#' @usage stations
+#' @format A 54 x 8 data frame
+#' @keywords datasets
+NULL
