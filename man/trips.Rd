@@ -13,14 +13,17 @@ trips
 \description{
 This data set is an aggregated one-row-per-trip version of the original
 point-in-time ValleyBike data for the years 2018 and 2019. Some raw by-day
-.csv files were corrupted, so no trips from those days are included.
+.csv files were corrupted, so trips from those days are not documented. Many
+trips also show up with either a very low duration (e.g. 0-3 seconds) or an
+impossibly high one (e.g. 900 hours). They have been left in the data set to
+give people the opportunity of exploring them further.
 }
 \section{Variables}{
 
 \itemize{
  \item route_id <chr>, the trip's unique route id (primary key)
  \item user_id <chr>, the rider's unique user id
- \item bike <chr> unique bike id
+ \item bike <chr>, unique bike id
  \item start_time <dttm>, the trip's starting date-time (EDT)
  \item end_time <dttm>, the trip's ending date-time (EDT)
  \item start_station <chr>, the trip's starting station

@@ -2,13 +2,16 @@
 #'
 #' This data set is an aggregated one-row-per-trip version of the original
 #' point-in-time ValleyBike data for the years 2018 and 2019. Some raw by-day
-#' .csv files were corrupted, so no trips from those days are included.
+#' .csv files were corrupted, so trips from those days are not documented. Many
+#' trips also show up with either a very low duration (e.g. 0-3 seconds) or an
+#' impossibly high one (e.g. 900 hours). They have been left in the data set to
+#' give people the opportunity of exploring them further.
 #'
 #' @section Variables:
 #' \itemize{
 #'  \item route_id <chr>, the trip's unique route id (primary key)
 #'  \item user_id <chr>, the rider's unique user id
-#'  \item bike <chr> unique bike id
+#'  \item bike <chr>, unique bike id
 #'  \item start_time <dttm>, the trip's starting date-time (EDT)
 #'  \item end_time <dttm>, the trip's ending date-time (EDT)
 #'  \item start_station <chr>, the trip's starting station
@@ -24,6 +27,36 @@
 #' @name trips
 #' @usage trips
 #' @format A 118,848 x 12 data frame
+#' @keywords datasets
+NULL
+
+#' ValleyBike user statistics over 2018-2019
+#'
+#' This data set is contains anonymous statistics for ValleyBike users in
+#' 2018 and 2019.
+#'
+#' @section Variables:
+#' \itemize{
+#'  \item user_id <chr>, the user's unique id (primary key)
+#'  \item num_trips <int>, the total number of trips taken by the user
+#'  \item first_trip <dttm> the date-time of the user's first recorded trip
+#'  \item last_trip <dttm> the date-time of the user's last recorded trip
+#'  \item mean_trip_duration <dbl>, the user's mean trip duration
+#'  \item median_trip_duration <dbl>, the user's median trip duration
+#'  \item most_freq_start_station <chr>, the station at which the user most
+#'        frequently starts a trip
+#'  \item num_starting_there <int>, the number of trips starting at the user's
+#'        most frequent start station
+#'  \item most_freq_end_station <chr>, the station at which the user most
+#'        frequently ends a trip
+#'  \item num_ending_there <int>, the number of trips ending at the user's
+#'        most frequent end station
+#' }
+#'
+#' @docType data
+#' @name users
+#' @usage users
+#' @format A 12,553 x 10 data frame
 #' @keywords datasets
 NULL
 
