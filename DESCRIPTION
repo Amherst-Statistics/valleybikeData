@@ -9,9 +9,10 @@ Authors@R:
     person(given = "Maria-Cristiana",
            family = "Girjau",
            role = c("aut", "cre"),
-           email = "mgirjau21@amherst.edu"),
+           email = "mgirjau21@amherst.edu")
 Description: A variety of utility functions and sample data for exploring bike activity in the Pioneer Valley.
 Encoding: UTF-8
 LazyData: true
 Imports:
   dplyr
+RoxygenNote: 7.1.0
