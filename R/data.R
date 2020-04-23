@@ -26,7 +26,7 @@
 #' @docType data
 #' @name trips
 #' @usage trips
-#' @format A 118,848 x 12 data frame
+#' @format A 118,839 x 12 data frame
 #' @keywords datasets
 NULL
 

@@ -5,7 +5,7 @@
 \alias{trips}
 \title{ValleyBike trips over 2018-2019}
 \format{
-A 118,848 x 12 data frame
+A 118,839 x 12 data frame
 }
 \usage{
 trips
