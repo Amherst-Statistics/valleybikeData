@@ -70,7 +70,7 @@ NULL
 #'  \item name <chr>, the station's name
 #'  \item address <chr> the station's address
 #'  \item city <chr>, the city in which the station is
-#'  \item latitude <dbl>, the station'slatitude
+#'  \item latitude <dbl>, the station's latitude
 #'  \item longitude <dbl>, the station's longitude
 #'  \item docks <int>, the number of bike docks at the station
 #'  \item display <chr>, display name for the station (usually name + city)
@@ -82,3 +82,54 @@ NULL
 #' @format A 54 x 8 data frame
 #' @keywords datasets
 NULL
+
+#' By-month trajectory data
+#'
+#' The by-month data sets (for 2018-2019) contain monthly trajectory data
+#' (latitude, longitude) collected during every trip, at 5-second intervals.
+#' These datasets are quite large (a few million entries), so they might lag
+#' your R session.
+#'
+#' @section Variables:
+#' \itemize{
+#'  \item route_id <chr>, the trip's unique route id (primary key)
+#'  \item user_id <chr>, the rider's unique user id
+#'  \item bike <chr>, unique bike id
+#'  \item time <dttm>, the time at which the location was recorded (down to seconds)
+#'  \item longitude <dbl>, the longitude of the bike at that point in time
+#'  \item latitude <dbl>, the latitude of the bike at that point in time
+#' }
+#'
+#' @docType data
+#' @name byMonth
+#' @keywords datasets
+NULL
+
+#' @rdname byMonth
+"june2018"
+#' @rdname byMonth
+"july2018"
+#' @rdname byMonth
+"august2018"
+#' @rdname byMonth
+"september2018"
+#' @rdname byMonth
+"october2018"
+#' @rdname byMonth
+"november2018"
+#' @rdname byMonth
+"april2019"
+#' @rdname byMonth
+"may2019"
+#' @rdname byMonth
+"june2019"
+#' @rdname byMonth
+"july2019"
+#' @rdname byMonth
+"august2019"
+#' @rdname byMonth
+"september2019"
+#' @rdname byMonth
+"october2019"
+#' @rdname byMonth
+"november2019"

@@ -20,7 +20,7 @@ This data set is contains information on the 54 ValleyBike stations.
  \item name <chr>, the station's name
  \item address <chr> the station's address
  \item city <chr>, the city in which the station is
- \item latitude <dbl>, the station'slatitude
+ \item latitude <dbl>, the station's latitude
  \item longitude <dbl>, the station's longitude
  \item docks <int>, the number of bike docks at the station
  \item display <chr>, display name for the station (usually name + city)
