@@ -4,11 +4,6 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-library(data.table)
-library(dplyr)
-library(janitor)
-library(parallel)
-library(readr)
 library(valleybike)
 
 knitr::opts_chunk$set(

@@ -1,8 +1,9 @@
+# Write documentation
 import_full <- function() {
   
   clust <- parallel::makeCluster(parallel::detectCores())
   
-  all_files <- paste0("data-raw/files/", list.files(path = "data-raw/", pattern = "*.csv.gz"))
+  all_files <- paste0("data-raw/", list.files(path = "data-raw/", pattern = "*.csv.gz"))
   
   files <- all_files[file.info(all_files)$size > 1000]
 
@@ -13,13 +14,14 @@ import_full <- function() {
   return(full_data)
 }
 
+# Write documentation
 import_day <- function(day, return = c("all", "clean", "anomalous")) {
   
   suppressWarnings({
     
     day_string <- gsub("-", "_", day)
     
-    filepath <- paste0("files/VB_Routes_Data_", day_string, ".csv.gz")
+    filepath <- paste0("data-raw/VB_Routes_Data_", day_string, ".csv.gz")
     
     data <- fread(filepath, skip = 2, colClasses = "character") %>%
       clean_names() %>%
