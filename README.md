@@ -1,6 +1,8 @@
 # valleybike <img src="man/figures/logo.png" title="logo created with hexSticker" width="160px" align="right"/>
 
-[ValleyBike Share](https://www.valleybike.org/) data package and helper functions. Check out the data documentation [here](https://amherst-statistics.github.io/valleybike/).
+[ValleyBike Share](https://www.valleybike.org/) data package and helper functions. 
+
+Check out the data documentation [here](https://amherst-statistics.github.io/valleybike/).
 
 ## Installation
 

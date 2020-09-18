@@ -1,7 +1,7 @@
-#' ValleyBike trips over 2018-2019
+#' ValleyBike trips over 2018-2020
 #'
 #' This data set is an aggregated one-row-per-trip version of the original
-#' point-in-time ValleyBike data for the years 2018 and 2019. Some raw by-day
+#' point-in-time ValleyBike data for the years 2018, 2019, and 2020. Some raw by-day
 #' .csv files were corrupted, so trips from those days are not documented. Many
 #' trips also show up with either a very low duration (e.g. 0-3 seconds) or an
 #' impossibly high one (e.g. 900 hours). They have been left in the data set to
@@ -33,7 +33,7 @@ NULL
 #' ValleyBike user statistics over 2018-2019
 #'
 #' This data set is contains anonymous statistics for ValleyBike users in
-#' 2018 and 2019.
+#' 2018, 2019, and 2020.
 #'
 #' @section Variables:
 #' \itemize{
@@ -60,7 +60,7 @@ NULL
 #' @keywords datasets
 NULL
 
-#' ValleyBike stations (as of mid-2020)
+#' ValleyBike stations (as of 2020)
 #'
 #' This data set is contains information on the 54 ValleyBike stations.
 #'
@@ -85,7 +85,7 @@ NULL
 
 #' By-month trajectory data
 #'
-#' The by-month data sets (for 2018-2019) contain monthly trajectory data
+#' The by-month data sets (for 2018-2020) contain monthly trajectory data
 #' (latitude, longitude) collected during every trip, at 5-second intervals.
 #' These datasets are quite large (a few million entries), so they might lag
 #' your R session.

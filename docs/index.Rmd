@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+library(dplyr)
 library(valleybike)
 
 knitr::opts_chunk$set(
@@ -13,7 +14,7 @@ knitr::opts_chunk$set(
 
 # Corrupted Files
 
-471 files in total (by day). 
+471 files in total (by day).
 
 The following days (9 days) contain corrupt files (161 bytes):
 
