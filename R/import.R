@@ -49,29 +49,30 @@ import_day <- function(day, return = c("all", "clean", "anomalous")) {
     
     day_string <- gsub("-", "_", day)
     
-    filepath <- paste0("data-raw/VB_Routes_Data_", day_string, ".csv.gz")
+    filename <- paste0("VB_Routes_Data_", day_string, ".csv.gz")
+    filepath <- system.file("extdata", filename, package = "valleybike", mustWork = TRUE)
     
-    data <- fread(filepath, skip = 2, colClasses = "character") %>%
-      clean_names() %>%
-      select(route_id, user_id, bike, time = date, longitude, latitude) %>%
-      mutate(
-        route_id = parse_character(route_id),
-        user_id = parse_character(user_id),
-        bike = as.character(parse_number(bike)),
-        time = parse_datetime(time),
-        longitude = parse_number(longitude),
-        latitude = parse_number(latitude)
+    data <- data.table::fread(filepath, skip = 2, colClasses = "character") %>%
+      janitor::clean_names() %>%
+      dplyr::select(route_id, user_id, bike, time = date, longitude, latitude) %>%
+      dplyr::mutate(
+        route_id = readr::parse_character(route_id),
+        user_id = readr::parse_character(user_id),
+        bike = as.character(readr::parse_number(bike)),
+        time = readr::parse_datetime(time),
+        longitude = readr::parse_number(longitude),
+        latitude = readr::parse_number(latitude)
       )
     
     data_clean <- data %>%
       na.omit() %>%
-      filter(
+      dplyr::filter(
         format(time, "%Y-%m-%d") == day,
         trunc(longitude) == -72,
         trunc(latitude) == 42
       )
     
-    data_anomalous <- anti_join(data, data_clean, by = c("route_id", "time"))
+    data_anomalous <- dplyr::anti_join(data, data_clean, by = c("route_id", "time"))
     
     message(nrow(data_anomalous), " anomalous observations found, from a total of ", nrow(data))
     
@@ -96,49 +97,48 @@ import_day <- function(day, return = c("all", "clean", "anomalous")) {
 #' @param return The type of data to return (one of "all", "clean", "anomalous"). Defaults to "all"
 #'
 #' @return A data frame of available trajectory data for that specific month.
-#'
-#' @examples
-#' data_may_2019 <- import_month("2019-05", return = "clean")
+#' 
+#' @importFrom magrittr %>%
 #' 
 #' @export
-import_month <- function(month, return = c("all", "clean", "anomalous")) {
-  
-  suppressWarnings({
-    
-    day_string <- gsub("-", "_", day)
-    
-    filepath <- paste0("data-raw/VB_Routes_Data_", day_string, ".csv.gz")
-    
-    data <- fread(filepath, skip = 2, colClasses = "character") %>%
-      clean_names() %>%
-      select(route_id, user_id, bike, time = date, longitude, latitude) %>%
-      mutate(
-        route_id = parse_character(route_id),
-        user_id = parse_character(user_id),
-        bike = as.character(parse_number(bike)),
-        time = parse_datetime(time),
-        longitude = parse_number(longitude),
-        latitude = parse_number(latitude)
-      )
-    
-    data_clean <- data %>%
-      na.omit() %>%
-      filter(
-        format(time, "%Y-%m-%d") == day,
-        trunc(longitude) == -72,
-        trunc(latitude) == 42
-      )
-    
-    data_anomalous <- anti_join(data, data_clean, by = c("route_id", "time"))
-    
-    message(nrow(data_anomalous), " anomalous observations found, from a total of ", nrow(data))
-    
-    if (return == "all") {
-      return(data)
-    } else if (return == "clean") {
-      return(data_clean)
-    } else {
-      return(data_anomalous)
-    }
-  })
-}
+# import_month <- function(month, return = c("all", "clean", "anomalous")) {
+# 
+#   suppressWarnings({
+# 
+#     month_string <- gsub("-", "_", month)
+# 
+#     filepath <- paste0("data-raw/VB_Routes_Data_", day_string, ".csv.gz")
+# 
+#     data <- data.table::fread(filepath, skip = 2, colClasses = "character") %>%
+#       janitor::clean_names() %>%
+#       dplyr::select(route_id, user_id, bike, time = date, longitude, latitude) %>%
+#       dplyr::mutate(
+#         route_id = readr::parse_character(route_id),
+#         user_id = readr::parse_character(user_id),
+#         bike = as.character(readr::parse_number(bike)),
+#         time = readr::parse_datetime(time),
+#         longitude = readr::parse_number(longitude),
+#         latitude = readr::parse_number(latitude)
+#       )
+# 
+#     data_clean <- data %>%
+#       na.omit() %>%
+#       dplyr::filter(
+#         format(time, "%Y-%m-%d") == day,
+#         trunc(longitude) == -72,
+#         trunc(latitude) == 42
+#       )
+# 
+#     data_anomalous <- dplyr::anti_join(data, data_clean, by = c("route_id", "time"))
+# 
+#     message(nrow(data_anomalous), " anomalous observations found, from a total of ", nrow(data))
+# 
+#     if (return == "all") {
+#       return(data)
+#     } else if (return == "clean") {
+#       return(data_clean)
+#     } else {
+#       return(data_anomalous)
+#     }
+#   })
+# }

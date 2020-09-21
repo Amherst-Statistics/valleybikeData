@@ -28,7 +28,7 @@ The following days (9 days) contain corrupt files (161 bytes):
 - 2018-10-20
 - 2019-04-19
 
-They are kept in the `data-raw/` folder anyway.
+They are kept in the `inst/extdata` folder anyway.
 
 # Compile all the data yourself
 

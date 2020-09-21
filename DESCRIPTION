@@ -13,12 +13,11 @@ Authors@R:
 Description: A variety of utility functions and sample data for exploring bike activity in the Pioneer Valley.
 Encoding: UTF-8
 LazyData: true
-Imports:
-  data.table,
-  dplyr,
-  janitor,
-  magrittr,
-  readr,
-  parallel
+Imports: data.table,
+         dplyr,
+         janitor,
+         magrittr,
+         readr,
+         parallel
 RoxygenNote: 7.1.0
 License: MIT
