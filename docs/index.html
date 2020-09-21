@@ -366,8 +366,8 @@ summary {
 </div>
 
 
-<div id="corrupted-files" class="section level1">
-<h1>Corrupted Files</h1>
+<div id="corrupted-files" class="section level2">
+<h2>Corrupted Files</h2>
 <p>471 files in total (by day).</p>
 <p>The following days (9 days) contain corrupt files (161 bytes):</p>
 <ul>
@@ -381,71 +381,17 @@ summary {
 <li>2018-10-20</li>
 <li>2019-04-19</li>
 </ul>
-<p>They are kept in the <code>data-raw/</code> folder anyway.</p>
+<p>They are kept in the <code>inst/extdata</code> folder anyway.</p>
 </div>
-<div id="compile-all-the-data-yourself" class="section level1">
-<h1>Compile all the data yourself</h1>
-<p>This takes long - around 10 min on MacOS Catalina 8GB RAM.</p>
-<pre class="r"><code>clust &lt;- parallel::makeCluster(parallel::detectCores())
-
-all_files &lt;- paste0(&quot;../&quot;, list.files(path = &quot;/Users/mcgirjau/git/valleybike/data-raw/files/&quot;,
-                                      pattern = &quot;*.csv.gz&quot;))
-
-files &lt;- all_files[file.info(all_files)$size &gt; 1000]
-
-# Not run
-very_fat_dataframe &lt;- parallel::parLapply(clust, files, data.table::fread, skip = 2) %&gt;%
-  data.table::rbindlist() %&gt;%
-  janitor::clean_names()</code></pre>
+<div id="compile-all-the-data-yourself" class="section level2">
+<h2>Compile all the data yourself</h2>
+<p>This takes long - around 10 min on a MacOS Catalina with 8GB RAM.</p>
+<pre class="r"><code>full_data &lt;- import_full()</code></pre>
 </div>
-<div id="compile-and-clean-a-single-daily-file" class="section level1">
-<h1>Compile and clean a single daily file</h1>
-<pre class="r"><code>data(stations)
-
-get_day &lt;- function(day, return = c(&quot;all&quot;, &quot;clean&quot;, &quot;anomalous&quot;)) {
-  
-  suppressWarnings({
-    
-    day_string &lt;- gsub(&quot;-&quot;, &quot;_&quot;, day)
-  
-    filepath &lt;- paste0(&quot;files/VB_Routes_Data_&quot;, day_string, &quot;.csv.gz&quot;)
-    
-    data &lt;- fread(filepath, skip = 2, colClasses = &quot;character&quot;) %&gt;%
-      clean_names() %&gt;%
-      select(route_id, user_id, bike, time = date, longitude, latitude) %&gt;%
-      mutate(
-        route_id = parse_character(route_id),
-        user_id = parse_character(user_id),
-        bike = as.character(parse_number(bike)),
-        time = parse_datetime(time),
-        longitude = parse_number(longitude),
-        latitude = parse_number(latitude)
-      )
-    
-    data_clean &lt;- data %&gt;%
-      na.omit() %&gt;%
-      filter(
-        format(time, &quot;%Y-%m-%d&quot;) == day,
-        trunc(longitude) == -72,
-        trunc(latitude) == 42
-      )
-      
-    data_anomalous &lt;- anti_join(data, data_clean, by = c(&quot;route_id&quot;, &quot;time&quot;))
-    
-    message(nrow(data_anomalous), &quot; anomalous observations found, from a total of &quot;, nrow(data))
-    
-    if (return == &quot;all&quot;) {
-      return(data)
-    } else if (return == &quot;clean&quot;) {
-      return(data_clean)
-    } else {
-      return(data_anomalous)
-    }
-  })
-}
-
-# Example
-get_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
+<div id="compile-and-clean-a-single-daily-file" class="section level2">
+<h2>Compile and clean a single daily file</h2>
+<pre class="r"><code># Example
+import_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
   select(-c(route_id, user_id)) %&gt;%
   head()</code></pre>
 <pre><code>56321 anomalous observations found, from a total of 598855</code></pre>

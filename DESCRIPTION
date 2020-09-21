@@ -16,8 +16,10 @@ LazyData: true
 Imports: data.table,
          dplyr,
          janitor,
-         magrittr,
          readr,
-         parallel
+         parallel,
+         tibble
 RoxygenNote: 7.1.0
 License: MIT
+Depends: 
+    R (>= 2.10)

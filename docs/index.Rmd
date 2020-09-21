@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   comment = NA)
 ```
 
-# Corrupted Files
+## Corrupted Files
 
 471 files in total (by day).
 
@@ -30,7 +30,7 @@ The following days (9 days) contain corrupt files (161 bytes):
 
 They are kept in the `inst/extdata` folder anyway.
 
-# Compile all the data yourself
+## Compile all the data yourself
 
 This takes long - around 10 min on a MacOS Catalina with 8GB RAM.
 
@@ -38,11 +38,16 @@ This takes long - around 10 min on a MacOS Catalina with 8GB RAM.
 full_data <- import_full()
 ```
 
-# Compile and clean a single daily file
+## Compile and clean a single daily file
 
 ```{r}
-# Example
 import_day("2019-04-06", return = "anomalous") %>%
   select(-c(route_id, user_id)) %>%
   head()
+```
+
+## Compile and clean a by-month file
+
+```{r, eval=FALSE}
+april2019 <- import_month("2019-04", return = "clean")
 ```

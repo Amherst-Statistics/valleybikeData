@@ -133,3 +133,9 @@ NULL
 "october2019"
 #' @rdname byMonth
 "november2019"
+#' @rdname byMonth
+"june2020"
+#' @rdname byMonth
+"july2020"
+#' @rdname byMonth
+"august2020"
