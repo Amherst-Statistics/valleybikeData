@@ -390,8 +390,7 @@ summary {
 </div>
 <div id="compile-and-clean-a-single-daily-file" class="section level2">
 <h2>Compile and clean a single daily file</h2>
-<pre class="r"><code># Example
-import_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
+<pre class="r"><code>import_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
   select(-c(route_id, user_id)) %&gt;%
   head()</code></pre>
 <pre><code>56321 anomalous observations found, from a total of 598855</code></pre>
@@ -402,6 +401,11 @@ import_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
 4: 1010 2019-04-13 17:31:45 -72.53095 42.38493
 5: 1010 2019-04-13 17:31:46 -72.53094 42.38494
 6: 1010 2019-04-13 17:31:47 -72.53093 42.38494</code></pre>
+</div>
+<div id="compile-and-clean-a-by-month-file" class="section level2">
+<h2>Compile and clean a by-month file</h2>
+<p><strong>NOTE:</strong> The parameter <code>future_cutoff</code> is set to 24 for all by-month files. If you would like to access data beyond that future cutoff, you will need to import the raw files yourself, with a higher <code>future_cutoff</code> value.</p>
+<pre class="r"><code>april2019 &lt;- import_month(&quot;2019-04&quot;, return = &quot;clean&quot;, future_cutoff = 24)</code></pre>
 </div>
 
 
