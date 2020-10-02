@@ -48,6 +48,8 @@ import_day("2019-04-06", return = "anomalous") %>%
 
 ## Compile and clean a by-month file
 
+**NOTE:** The parameter `future_cutoff` is set to 24 for all by-month files. If you would like to access data beyond that future cutoff, you will need to import the raw files yourself, with a higher `future_cutoff` value.
+
 ```{r, eval=FALSE}
-april2019 <- import_month("2019-04", return = "clean")
+april2019 <- import_month("2019-04", return = "clean", future_cutoff = 24)
 ```
