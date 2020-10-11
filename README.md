@@ -1,8 +1,8 @@
-# valleybike <img src="man/figures/logo.png" title="logo created with hexSticker" width="160px" align="right"/>
+# valleybikeData <img src="man/figures/logo.png" title="logo created with hexSticker" width="160px" align="right"/>
 
-[ValleyBike Share](https://www.valleybike.org/) data package and helper functions. 
+[ValleyBike Share](https://www.valleybike.org/) data package. 
 
-Check out the data documentation [here](https://amherst-statistics.github.io/valleybike/).
+Check out the data workflow [here](https://amherst-statistics.github.io/valleybike/).
 
 ## Installation
 
@@ -10,8 +10,8 @@ Install the development version from GitHub:
 
 ```{r}
 # install.packages("devtools")
-devtools::install_github("Amherst-Statistics/valleybike")
-library(valleybike)
+devtools::install_github("Amherst-Statistics/valleybikeData")
+library(valleybikeData)
 ```
 
 ## Datasets
@@ -28,18 +28,3 @@ To use any of the datasets above, you can load them explicitly into your environ
 ```{r}
 data(trips)
 ```
-
-## Functions (Under Development)
-
-The package also includes a variety of utility functions, which aim to make the data more accessible and easier to analyze.
-
-Functions for a particular trip:
-
-- `get_trajectory_data`
-- `get_duration`
-- `get_distance`
-- `get_stops`
-
-Functions for a group of trips:
-
-- `get_average_duration`

@@ -12,9 +12,15 @@ knitr::opts_chunk$set(
   comment = NA)
 ```
 
-## Corrupted Files
+# Original Raw Data
 
-471 files in total (by day).
+```{r}
+
+```
+
+# Corrupted Files
+
+510 files in total (by day).
 
 The following days (9 days) contain corrupt files (161 bytes):
 
@@ -30,7 +36,7 @@ The following days (9 days) contain corrupt files (161 bytes):
 
 They are kept in the `inst/extdata` folder anyway.
 
-## Compile all the data yourself
+# Compile all the data yourself
 
 This takes long - around 10 min on a MacOS Catalina with 8GB RAM.
 
