@@ -11,7 +11,7 @@ output: github_document
 
 [ValleyBike Share](https://www.valleybike.org/) data package. 
 
-Check out the [Data Import Workflow Documentation](https://amherst-statistics.github.io/valleybike/) and the [package manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf) for more details.
+Check out the [Data Import Workflow Documentation](https://amherst-statistics.github.io/valleybikeData/) and the [package manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf) for more details.
 
 ## Installation
 
@@ -42,4 +42,4 @@ The package also includes a variety of utility functions for importing the raw d
 - `aggregate_trips`
 - `aggregate_users`
 
-For more details on what these functions do and how to use them, please see the [Data Import Workflow Documentation](https://amherst-statistics.github.io/valleybike/).
+For more details on what these functions do and how to use them, please see the [Data Import Workflow Documentation](https://amherst-statistics.github.io/valleybikeData/).

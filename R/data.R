@@ -33,19 +33,17 @@ NULL
 #' @section Variables:
 #' \itemize{
 #'  \item user_id (character), the user's unique id (primary key)
-#'  \item num_trips (integer), the total number of trips taken by the user
-#'  \item first_trip (datetime) the date-time of the user's first recorded trip
-#'  \item last_trip (datetime) the date-time of the user's last recorded trip
+#'  \item trips (integer), the total number of trips taken by the user
+#'  \item min_trip_duration (double), the user's minimum trip duration
 #'  \item mean_trip_duration (double), the user's mean trip duration
 #'  \item median_trip_duration (double), the user's median trip duration
-#'  \item most_freq_start_station (character), the station at which the user most
-#'        frequently starts a trip
-#'  \item num_starting_there (integer), the number of trips starting at the user's
-#'        most frequent start station
-#'  \item most_freq_end_station (character), the station at which the user most
-#'        frequently ends a trip
-#'  \item num_ending_there (integer), the number of trips ending at the user's
-#'        most frequent end station
+#'  \item max_trip_duration (double), the user's maximum trip duration
+#'  \item first_trip_time (datetime), the datetime of the user's first recorded trip
+#'  \item last_trip_time (datetime), the datetime of the user's last recorded trip
+#'  \item top_start_station (character), the station at which the user most frequently starts a trip
+#'  \item top_start_station_trips (integer), the number of trips starting at the top start station
+#'  \item top_end_station (character), the station at which the user most frequently ends a trip
+#'  \item top_end_station_trips (integer), the number of trips ending at the top end station
 #' }
 #'
 #' @docType data

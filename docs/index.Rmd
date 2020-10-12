@@ -3,9 +3,8 @@ title: "ValleyBike Data Import Workflow Documentation"
 author: "Maria-Cristiana Gîrjău"
 date: "12 October 2020"
 output: 
-  prettydoc::html_pretty:
-    theme: architect
-    highlight: github
+  html_document:
+    theme: lumen
 ---
 
 ```{r setup, include=FALSE}
@@ -24,13 +23,13 @@ knitr::opts_chunk$set(
 
 ## Data Location
 
-The raw day-by-day data files as they are collected at the source can be found online on [Nicholas Horton's website](https://nhorton.people.amherst.edu/valleybikes/), as .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the [inst/extdata directory](https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata) of the [valleybikeData package](https://github.com/Amherst-Statistics/valleybikeData), although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.
+The raw day-by-day data files can be found online on [Nicholas Horton's website](https://nhorton.people.amherst.edu/valleybikes/), as .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the [inst/extdata directory](https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata) of the [valleybikeData package](https://github.com/Amherst-Statistics/valleybikeData), although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.
 
-As of the time of writing, there are 507 daily trajectory data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020. 
+At the time of writing, there are 507 daily data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020. 
 
 ## Data Download
 
-When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by pakage authors, contributors, or anyone with write access to the valleybikeData repository. To do this, the utility function `download_data` is provided. Please do not perform this process by hand. The `download_data` function can be used as follows:
+When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by package authors, contributors, or anyone with write access to the valleybikeData repository. To sync the files appropriately, the `download_data` utility function is provided. Please do not perform this process by hand. The `download_data` function is used as follows:
 
 1. Clone the source repository onto your own machine and open it in RStudio.
 2. Use `devtools::load_all()` to load the package namespace. This might take a while.
@@ -59,7 +58,7 @@ Once the `download_data` function is done running, all daily trajectory data fil
 - 2018-10-20
 - 2019-04-19
 
-They are kept in the `inst/extdata` folder for completion, and all utility functions that deal with .csv.gz files can recognize and filter out these files.
+They are kept in the inst/extdata folder for the sake of thoroughness. All utility functions that deal with .csv.gz files can recognize and filter out these files.
 
 ## Data Import (Day)
 
