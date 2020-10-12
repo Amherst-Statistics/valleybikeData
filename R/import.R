@@ -93,7 +93,7 @@ download_data <- function(path, overwrite = FALSE) {
 #' @return A tibble of available trajectory data for that specific day.
 #'
 #' @examples
-#' data_22_may_2019 <- import_day("2019-05-22")
+#' data_28_june_2018 <- import_day("2018-06-28")
 #'
 #' @export
 import_day <- function(day, return = c("clean", "anomalous", "all"), future_cutoff = 24) {

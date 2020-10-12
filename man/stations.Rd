@@ -5,25 +5,25 @@
 \alias{stations}
 \title{ValleyBike stations (as of 2020)}
 \format{
-A 54 x 8 data frame
+A tibble
 }
 \usage{
 stations
 }
 \description{
-This data set is contains information on the 54 ValleyBike stations.
+This dataset is contains information on the 54 ValleyBike stations.
 }
 \section{Variables}{
 
 \itemize{
- \item serial_num <int>, the station's serial number (primary key)
- \item name <chr>, the station's name
- \item address <chr> the station's address
- \item city <chr>, the city in which the station is
- \item latitude <dbl>, the station's latitude
- \item longitude <dbl>, the station's longitude
- \item docks <int>, the number of bike docks at the station
- \item display <chr>, display name for the station (usually name + city)
+ \item serial_num (integer), the station's serial number (primary key)
+ \item name (character), the station's name
+ \item address (character) the station's address
+ \item city (character), the city in which the station is
+ \item latitude (double), the station's latitude
+ \item longitude (double), the station's longitude
+ \item docks (integer), the number of bike docks at the station
+ \item display (character), display name for the station (usually name + city)
 }
 }
 

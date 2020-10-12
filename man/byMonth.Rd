@@ -20,6 +20,8 @@
 \alias{june2020}
 \alias{july2020}
 \alias{august2020}
+\alias{september2020}
+\alias{october2020}
 \title{By-month trajectory data}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 36773 rows and 6 columns.
@@ -28,7 +30,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 5802790 rows and 6 columns.
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7180077 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 8927495 rows and 6 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7331158 rows and 6 columns.
 
@@ -54,7 +56,11 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2641636 rows and 6 columns.
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2825952 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2890749 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2681825 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 361804 rows and 6 columns.
 }
 \usage{
 june2018
@@ -90,22 +96,25 @@ june2020
 july2020
 
 august2020
+
+september2020
+
+october2020
 }
 \description{
-The by-month data sets (for 2018-2020) contain monthly trajectory data
-(latitude, longitude) collected during every trip, at 5-second intervals.
-These datasets are quite large (a few million entries), so they might lag
-your R session.
+The by-month datasets contain monthly trajectory data for all the months that ValleyBike has
+been in active operation (normally April-November each year). The point data (latitude, longitude)
+was collected during every trip, at 5-second intervals.
 }
 \section{Variables}{
 
 \itemize{
- \item route_id <chr>, the trip's unique route id (primary key)
- \item user_id <chr>, the rider's unique user id
- \item bike <chr>, unique bike id
- \item time <dttm>, the time at which the location was recorded (down to seconds)
- \item longitude <dbl>, the longitude of the bike at that point in time
- \item latitude <dbl>, the latitude of the bike at that point in time
+ \item route_id (character), the trip's unique route id (primary key)
+ \item user_id (character), the rider's unique user id
+ \item bike (character), unique bike id
+ \item time (datetime), the time at which the location was recorded (down to seconds)
+ \item longitude (double), the longitude of the bike at that point in time
+ \item latitude (double), the latitude of the bike at that point in time
 }
 }
 

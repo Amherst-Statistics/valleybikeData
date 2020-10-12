@@ -5,34 +5,30 @@
 \alias{trips}
 \title{ValleyBike trips over 2018-2020}
 \format{
-A 118,839 x 12 data frame
+A tibble
 }
 \usage{
 trips
 }
 \description{
 This data set is an aggregated one-row-per-trip version of the original
-point-in-time ValleyBike data for the years 2018, 2019, and 2020. Some raw by-day
-.csv files were corrupted, so trips from those days are not documented. Many
-trips also show up with either a very low duration (e.g. 0-3 seconds) or an
-impossibly high one (e.g. 900 hours). They have been left in the data set to
-give people the opportunity of exploring them further.
+point-in-time ValleyBike data for the years 2018, 2019, and 2020.
 }
 \section{Variables}{
 
 \itemize{
- \item route_id <chr>, the trip's unique route id (primary key)
- \item user_id <chr>, the rider's unique user id
- \item bike <chr>, unique bike id
- \item start_time <dttm>, the trip's starting date-time (EDT)
- \item end_time <dttm>, the trip's ending date-time (EDT)
- \item start_station <chr>, the trip's starting station
- \item end_station <chr>, the trip's ending station
- \item start_latitude <dbl>, the trip's starting latitude
- \item start_longitude <dbl>, the trip's starting longitude
- \item end_latitude <dbl>, the trip's ending latitude
- \item end_longitude <dbl>, the trip's ending longitude
- \item duration <int>, the trip's duration (in seconds)
+ \item route_id (character), the trip's unique route id (primary key)
+ \item user_id (character), the rider's unique user id
+ \item bike (character), unique bike id
+ \item start_time (datetime), the trip's starting date-time (EDT)
+ \item end_time (datetime), the trip's ending date-time (EDT)
+ \item start_station (character), the trip's starting station
+ \item start_latitude (double), the trip's starting latitude
+ \item start_longitude (double), the trip's starting longitude
+ \item end_station (character), the trip's ending station
+ \item end_latitude (double), the trip's ending latitude
+ \item end_longitude (double), the trip's ending longitude
+ \item duration (double), the trip's duration (in seconds)
 }
 }
 

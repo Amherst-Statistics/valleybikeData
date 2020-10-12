@@ -7,7 +7,7 @@
 import_full()
 }
 \value{
-A 60,910,226 x 6 tibble of all available trajectory data.
+A 65,975,278 x 6 tibble of all available trajectory data.
 }
 \description{
 Import full trajectory data (raw)

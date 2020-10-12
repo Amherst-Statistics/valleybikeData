@@ -25,6 +25,6 @@ Import trajectory data for a specific day. The user can choose to import the raw
 the clean data (i.e. the raw data minus any anomalous observations), or the anomalous data.
 }
 \examples{
-data_22_may_2019 <- import_day("2019-05-22", return = "clean")
+data_22_may_2019 <- import_day("2019-05-22")
 
 }

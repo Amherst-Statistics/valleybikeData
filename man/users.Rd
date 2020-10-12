@@ -5,32 +5,29 @@
 \alias{users}
 \title{ValleyBike user statistics over 2018-2019}
 \format{
-A 12,553 x 10 data frame
+A tibble
 }
 \usage{
 users
 }
 \description{
-This data set is contains anonymous statistics for ValleyBike users in
-2018, 2019, and 2020.
+This dataset is contains anonymous statistics for ValleyBike users in 2018, 2019, and 2020.
 }
 \section{Variables}{
 
 \itemize{
- \item user_id <chr>, the user's unique id (primary key)
- \item num_trips <int>, the total number of trips taken by the user
- \item first_trip <dttm> the date-time of the user's first recorded trip
- \item last_trip <dttm> the date-time of the user's last recorded trip
- \item mean_trip_duration <dbl>, the user's mean trip duration
- \item median_trip_duration <dbl>, the user's median trip duration
- \item most_freq_start_station <chr>, the station at which the user most
-       frequently starts a trip
- \item num_starting_there <int>, the number of trips starting at the user's
-       most frequent start station
- \item most_freq_end_station <chr>, the station at which the user most
-       frequently ends a trip
- \item num_ending_there <int>, the number of trips ending at the user's
-       most frequent end station
+ \item user_id (character), the user's unique id (primary key)
+ \item trips (integer), the total number of trips taken by the user
+ \item min_trip_duration (double), the user's minimum trip duration
+ \item mean_trip_duration (double), the user's mean trip duration
+ \item median_trip_duration (double), the user's median trip duration
+ \item max_trip_duration (double), the user's maximum trip duration
+ \item first_trip_time (datetime), the datetime of the user's first recorded trip
+ \item last_trip_time (datetime), the datetime of the user's last recorded trip
+ \item top_start_station (character), the station at which the user most frequently starts a trip
+ \item top_start_station_trips (integer), the number of trips starting at the top start station
+ \item top_end_station (character), the station at which the user most frequently ends a trip
+ \item top_end_station_trips (integer), the number of trips ending at the top end station
 }
 }
 
