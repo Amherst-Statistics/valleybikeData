@@ -11,16 +11,19 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mgirjau21@amherst.edu")
 Description: All currently-available ValleyBike.org point data for 2018-2020, as well as some
-             aggregated datasets.
+    aggregated datasets.
 Encoding: UTF-8
 LazyData: true
 Imports: data.table,
          dplyr,
          janitor,
+         magrittr,
          readr,
+         R.utils,
          parallel,
+         stringr,
          tibble
 RoxygenNote: 7.1.0
-License: MIT
+License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)

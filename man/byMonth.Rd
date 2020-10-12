@@ -17,35 +17,44 @@
 \alias{september2019}
 \alias{october2019}
 \alias{november2019}
+\alias{june2020}
+\alias{july2020}
+\alias{august2020}
 \title{By-month trajectory data}
 \format{
-An object of class \code{data.frame} with 23516 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 36773 rows and 6 columns.
 
-An object of class \code{data.frame} with 2049390 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2054773 rows and 6 columns.
 
-An object of class \code{data.frame} with 5835718 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 5802790 rows and 6 columns.
 
-An object of class \code{data.frame} with 7746958 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7180077 rows and 6 columns.
 
-An object of class \code{data.frame} with 7456798 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7331158 rows and 6 columns.
 
-An object of class \code{data.frame} with 2668702 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2598266 rows and 6 columns.
 
-An object of class \code{data.frame} with 4636234 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4681751 rows and 6 columns.
 
-An object of class \code{data.frame} with 3380879 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3379888 rows and 6 columns.
 
-An object of class \code{data.frame} with 4979741 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4875254 rows and 6 columns.
 
-An object of class \code{data.frame} with 4454943 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4369828 rows and 6 columns.
 
-An object of class \code{data.frame} with 4177156 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4006793 rows and 6 columns.
 
-An object of class \code{data.frame} with 3406582 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3360060 rows and 6 columns.
 
-An object of class \code{data.frame} with 2255826 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2223486 rows and 6 columns.
 
-An object of class \code{data.frame} with 878730 rows and 6 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 879494 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 435629 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2641636 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2825952 rows and 6 columns.
 }
 \usage{
 june2018
@@ -75,6 +84,12 @@ september2019
 october2019
 
 november2019
+
+june2020
+
+july2020
+
+august2020
 }
 \description{
 The by-month data sets (for 2018-2020) contain monthly trajectory data

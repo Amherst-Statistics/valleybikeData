@@ -4,21 +4,24 @@
 \alias{import_day}
 \title{import_day}
 \usage{
-import_day(day, return = c("all", "clean", "anomalous"))
+import_day(day, return = c("clean", "anomalous", "all"), future_cutoff = 24)
 }
 \arguments{
-\item{day}{The day for which to import the data (as a string of the form "YYYY-MM-DD")}
+\item{day}{The day for which to import the data (as a string of the form "YYYY-MM-DD").}
 
-\item{return}{The type of data to return (one of "all", "clean", "anomalous"). Defaults to "all"}
+\item{return}{The type of data to return (one of "clean", "anomalous", "all). Defaults to "clean".}
+
+\item{future_cutoff}{The next-day cutoff (in hours) past which observations are categorized as
+"anomalous", since rides may last past midnight. Defaults to 24.0 hours.}
 }
 \value{
-A data frame of available trajectory data for that specific day.
+A tibble of available trajectory data for that specific day.
 }
 \description{
 Import trajectory data for one day.
 }
 \details{
-Import trajectory data for a specific day. The user can choose to import the raw data, 
+Import trajectory data for a specific day. The user can choose to import the raw data,
 the clean data (i.e. the raw data minus any anomalous observations), or the anomalous data.
 }
 \examples{

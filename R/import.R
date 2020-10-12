@@ -1,6 +1,26 @@
-download_data <- function(destination_path, overwrite = FALSE) {
+# =================================================================================================
+# download_data
+# =================================================================================================
 
-  if (!dir.exists(destination_path)) {
+#' Download raw data files
+#'
+#' Download all available .csv.gz raw trajectory data files for the years 2018-2020 into a specified
+#' directory. Intended usage is for updating the files in inst/extdata to mirror those online.
+#'
+#' @title download_data
+#'
+#' @param path The path where to download the data files. Presumably, this will be inst/extdata.
+#' @param overwrite Whether to overwrite the existing files at the destination path. Defaults to FALSE.
+#'
+#' @examples
+#' \dontrun{
+#' download_data(path = "inst/extdata", overwrite = TRUE)
+#' }
+#'
+#' @export
+download_data <- function(path, overwrite = FALSE) {
+
+  if (!dir.exists(path)) {
     stop("Invalid destination path.")
   }
 
@@ -13,10 +33,10 @@ download_data <- function(destination_path, overwrite = FALSE) {
     stringr::str_extract_all(pattern = file_pattern) %>%
     unlist()
 
-  existing_file_names <- list.files(destination_path)
+  existing_file_names <- list.files(path)
 
   if (overwrite) {
-    existing_file_paths <- file.path(destination_path, existing_file_names)
+    existing_file_paths <- file.path(path, existing_file_names)
     file.remove(existing_file_paths)
   } else {
     file_names <- file_names[!(file_names %in% existing_file_names)]
@@ -28,27 +48,26 @@ download_data <- function(destination_path, overwrite = FALSE) {
 
   file_urls <- paste0(root, file_names)
 
-  destination_files <- file.path(destination_path, file_names)
+  destination_files <- file.path(path, file_names)
 
-  confirmation <- paste0("Will download ", length(file_names), " files to ",
-                         destination_path, ". Proceed? [y/n] ")
+  confirmation <- paste0("Will download ", length(file_names), " files to ", path, ". Proceed? [y/n] ")
 
   stopifnot(readline(prompt = confirmation) == "y")
 
   mapply(download.file, file_urls, destination_files)
 
   # standardize extensions ------------------------------------------------------------------------
-  csv_file_names <- list.files(destination_path, pattern = ".csv$")
+  csv_file_names <- list.files(path, pattern = ".csv$")
 
-  csv_file_paths <- file.path(destination_path, csv_file_names)
+  csv_file_paths <- file.path(path, csv_file_names)
 
   overlap_pattern <- csv_file_names %>%
     paste0(".gz") %>%
     paste0(collapse = "|")
 
-  overlap_gz_file_names <- list.files(destination_path, pattern = overlap_pattern)
+  overlap_gz_file_names <- list.files(path, pattern = overlap_pattern)
 
-  overlap_gz_file_paths <- file.path(destination_path, overlap_gz_file_names)
+  overlap_gz_file_paths <- file.path(path, overlap_gz_file_names)
 
   file.remove(overlap_gz_file_paths)
 
@@ -56,7 +75,7 @@ download_data <- function(destination_path, overwrite = FALSE) {
 }
 
 # =================================================================================================
-# =================================================================================================
+# import_full
 # =================================================================================================
 
 #' Import full trajectory data (raw)
@@ -95,7 +114,7 @@ import_full <- function() {
 }
 
 # =================================================================================================
-# =================================================================================================
+# import_day
 # =================================================================================================
 
 #' Import trajectory data for one day.
@@ -106,7 +125,7 @@ import_full <- function() {
 #' @title import_day
 #'
 #' @param day The day for which to import the data (as a string of the form "YYYY-MM-DD").
-#' @param return The type of data to return (one of "all", "clean", "anomalous"). Defaults to "all".
+#' @param return The type of data to return (one of "clean", "anomalous", "all). Defaults to "clean".
 #' @param future_cutoff The next-day cutoff (in hours) past which observations are categorized as
 #'                      "anomalous", since rides may last past midnight. Defaults to 24.0 hours.
 #'
@@ -116,7 +135,7 @@ import_full <- function() {
 #' data_22_may_2019 <- import_day("2019-05-22", return = "clean")
 #'
 #' @export
-import_day <- function(day, return = c("all", "clean", "anomalous"), future_cutoff = 24) {
+import_day <- function(day, return = c("clean", "anomalous", "all"), future_cutoff = 24) {
 
   day_string <- gsub("-", "_", day)
 
@@ -183,7 +202,7 @@ import_day <- function(day, return = c("all", "clean", "anomalous"), future_cuto
 }
 
 # =================================================================================================
-# =================================================================================================
+# import_month
 # =================================================================================================
 
 #' Import trajectory data for one month.
