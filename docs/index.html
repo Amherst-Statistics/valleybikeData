@@ -444,8 +444,8 @@ summary {
 <p>The raw day-by-day data files can be found online at <a href="https://nhorton.people.amherst.edu/valleybikes/">Prof. Nicholas Horton’s website</a>, in the form of .csv.gz files (i.e. compressed .csv format).</p>
 <p>At the time of writing, there are 500 daily data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020 for which there is available, non-corrupted data.</p>
 </div>
-<div id="corrupted-files" class="section level2">
-<h2>Corrupted Files</h2>
+<div id="corrupted-data" class="section level2">
+<h2>Corrupted Data</h2>
 <p>The data for 6 days has been corrupted at the source, and the process of fixing them is under way. Until then, note that the data for the following days is not available on the website:</p>
 <ul>
 <li>2018-09-01</li>
@@ -474,20 +474,20 @@ summary {
 2 route_07_2018@8302… d4ff327d-749… 1322  NA                      -72.7     42.3
 3 route_07_2018@8f2d… f02baa80-e88… 1112  NA                      -72.6     42.3
 4 route_07_2018@eaa6… 20785e9f-15a… 1064  NA                      -72.6     42.2
-5 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-29 00:19:49     -72.7     42.3
-6 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-29 00:19:54     -72.7     42.3</code></pre>
+5 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-28 20:19:49     -72.7     42.3
+6 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-28 20:19:54     -72.7     42.3</code></pre>
 <pre class="r"><code>import_day(&quot;2020-10-05&quot;, return = &quot;clean&quot;) %&gt;%
   head()</code></pre>
 <pre><code># A tibble: 6 x 6
 # Rowwise: 
   route_id            user_id       bike  time                longitude latitude
   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;dttm&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
-1 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:06     -72.6     42.2
-2 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:11     -72.6     42.2
-3 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:16     -72.6     42.2
-4 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:21     -72.6     42.2
-5 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:26     -72.6     42.2
-6 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:31     -72.6     42.2</code></pre>
+1 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:06     -72.6     42.2
+2 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:11     -72.6     42.2
+3 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:16     -72.6     42.2
+4 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:21     -72.6     42.2
+5 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:26     -72.6     42.2
+6 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 10:03:31     -72.6     42.2</code></pre>
 </div>
 <div id="data-import-month" class="section level2">
 <h2>Data Import (Month)</h2>
@@ -503,13 +503,13 @@ usethis::use_data(april2019, overwrite = TRUE)</code></pre>
 </div>
 <div id="data-import-full" class="section level2">
 <h2>Data Import (Full)</h2>
-<p>To access all of the raw .csv.gz daily files from the website as a single unified data frame (of 60+ million observations over 2018-2020), the <code>get_full_data</code> utility function is provided. Note that it takes quite long to run, and yields a rather large object.</p>
+<p>To access all of the raw .csv.gz daily files from the website as a single unified data frame (60+ million observations over 2018-2020), the <code>get_full_data</code> utility function is provided. Note that it takes quite long to run, and yields a rather large object.</p>
 <p><strong>EXAMPLE:</strong></p>
-<pre class="r"><code>full_date &lt;- get_full_data()</code></pre>
+<pre class="r"><code>full_data &lt;- get_full_data()</code></pre>
 </div>
 <div id="data-aggregation-trips" class="section level2">
 <h2>Data Aggregation (Trips)</h2>
-<p>To aggregate the full data into a one-row-per-trip dataset, the <code>aggregate_trips</code> utility function is provided. It computes a variety of additional metrics, such as the trip duration, the presumed start and end stations, the start and end times, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.</p>
+<p>To aggregate the full data into a one-row-per-trip dataset, the <code>aggregate_trips</code> utility function is provided. It computes a variety of additional metrics, such as the trip duration, the most likely start and end stations, the start and end times, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.</p>
 <p><strong>EXAMPLE:</strong></p>
 <pre class="r"><code>trips &lt;- aggregate_trips(full_data)
 
