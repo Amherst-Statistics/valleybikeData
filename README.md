@@ -11,11 +11,12 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 
 [ValleyBike.org](https://www.valleybike.org/) data package.
 
-Check out the [Data Import Workflow
-Documentation](https://amherst-statistics.github.io/valleybikeData/) and
-the [package
-manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf)
-for more details.
+For the reproducible data curation process, check out the [Data Import
+Workflow
+Documentation](https://amherst-statistics.github.io/valleybikeData/).
+For more specific information on the datasets and utility functions
+included, see the [package
+manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf).
 
 ## Installation
 
