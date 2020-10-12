@@ -19,37 +19,15 @@ knitr::opts_chunk$set(
 
 # Documented ValleyBike Data Import Workflow
 
-**NOTE:** The code for all utility functions mentioned in this workflow documentation can be found in [R/import.R](https://github.com/Amherst-Statistics/valleybikeData/blob/master/R/import.R).
-
 ## Data Location
 
-The raw day-by-day data files can be found online at [Prof. Nicholas Horton's website](https://nhorton.people.amherst.edu/valleybikes/), in the form of .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the [inst/extdata directory](https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata) of the [valleybikeData package](https://github.com/Amherst-Statistics/valleybikeData), although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.
+The raw day-by-day data files can be found online at [Prof. Nicholas Horton's website](https://nhorton.people.amherst.edu/valleybikes/), in the form of .csv.gz files (i.e. compressed .csv format).
 
-At the time of writing, there are 507 daily data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020. 
+At the time of writing, there are 500 daily data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020 for which there is available, non-corrupted data. 
 
-## Data Download
+## Corrupted Data
 
-When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by package authors, contributors, or anyone with write access to the valleybikeData repository. To sync the files appropriately, the `download_data` utility function is provided. Please do not perform this process by hand. The `download_data` function can be used as follows:
-
-1. Clone the source repository onto your own machine and open it in RStudio.
-2. Use `devtools::load_all()` to load the package namespace. This might take a while.
-3. Run `download_data`. It takes one required parameter, `path`, which specifies the path where the files will be downloaded. This should be your own local path to the cloned repository's inst/extdata directory, e.g. "~/git/valleybikeData/inst/extdata". The function also takes an optional parameter, `overwrite`, which specifies whether to overwrite the already-existing files in inst/extdata (defaults to `FALSE` for efficiency). You would only need to set `overwrite = TRUE` if the old files have been changed and you want to replace them.
-
-    **EXAMPLES:**
-
-    ```{r, eval=FALSE}
-    # if new files have been added, but no old files were changed
-    download_data(path = "~/git/valleybikeData/inst/extdata")
-    
-    # if old files were changed
-    download_data(path = "~/git/valleybikeData/inst/extdata", overwrite = TRUE)
-    ```
-
-Once the `download_data` function is done running, all daily trajectory data files will be available for use.
-
-## Corrupted Files
-
-6 files currently contain corrupted data, and the process of fixing them is under way. The corrupted files all measure 161 bytes and correspond to the following days:
+The data for 6 days has been corrupted at the source, and the process of fixing them is under way. Until then, note that the data for the following days is not available on the website:
 
 - 2018-09-01
 - 2018-09-30
@@ -58,11 +36,9 @@ Once the `download_data` function is done running, all daily trajectory data fil
 - 2018-10-20
 - 2019-04-19
 
-They are kept in the inst/extdata folder for the sake of thoroughness. All utility functions that deal with .csv.gz files can recognize and filter out these files.
-
 ## Data Import (Day)
 
-To import a day's worth of data from the raw .csv.gz daily files, the `import_day` utility function is provided. It takes 3 parameters: 
+To import a day's worth of data from the raw .csv.gz daily files on the website, the `import_day` utility function is provided. It takes 3 parameters: 
 
 1. `day`: the day for which the data is desired, as a string of the format `"YYYY-MM-DD"`, e.g. `"2019-05-22"`. It can be any day between 28 June 2018 to 5 October 2020, although ValleyBike only operates from April to November. Supplying an invalid date, a date for which no data has been recorded, or a date that corresponds to a corrupted file will all yield an empty tibble.
 2. `return`: the type of data to be returned (one of: `"clean"`, `"anomalous"`, `"all"`). Defaults to `"clean"`.
@@ -80,41 +56,66 @@ import_day("2020-10-05", return = "clean") %>%
 
 ## Data Import (Month)
 
-To import a month's worth of data from the raw .csv.gz daily files, the `import_month` utility function is provided. It uses `import_day` repeatedly behind the scenes in order to collate the data from all days of the desired month. 
+To import a month's worth of data from the raw .csv.gz daily files on the website, the `import_month` utility function is provided. It uses `import_day` repeatedly behind the scenes in order to collate the data from all days of the desired month. 
 
 The function takes one required parameter, `month`, as a string of the format `"YYYY-MM"`, e.g. `"2019-05"`. It also takes any optional parameters to forward to `import_day`, i.e. `return` and `future_cutoff`.
 
 **NOTE:** The parameter `future_cutoff` is set to 24 for all by-month files. If data beyond that future cutoff is needed, one must import the data from scratch using a higher `future_cutoff` value.
 
+**EXAMPLE:**
+
 ```{r, eval=FALSE}
 # DEFAULTS: return = "clean", future_cutoff = 24
 april2019 <- import_month("2019-04")
 
+# incorporate the monthly data file in the package
 usethis::use_data(april2019, overwrite = TRUE)
 ```
 
 ## Data Import (Full)
 
-To import all of the raw .csv.gz daily files into a single unified data frame (of 60+ million observations over 2018-2020), the `import_full` utility function is provided. Note that it takes quite long to run, and yields a rather large object.
+To access all of the raw .csv.gz daily files from the website as a single unified data frame (60+ million observations over 2018-2020), the `get_full_data` utility function is provided. Note that it takes quite long to run, and yields a rather large object.
+
+**EXAMPLE:**
 
 ```{r, eval=FALSE}
-full <- import_full()
+full_data <- get_full_data()
 ```
 
 ## Data Aggregation (Trips)
 
-To aggregate the full data into a one-row-per-trip dataset, the `aggregate_trips` utility function is provided. It computes a variety of additional metrics, such as the trip duration, the presumed start and end stations, the start and end times, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.
+To aggregate the full data into a one-row-per-trip dataset, the `aggregate_trips` utility function is provided. It computes a variety of additional metrics, such as the trip duration, the most likely start and end stations, the start and end times, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.
+
+**EXAMPLE:**
 
 ```{r, eval=FALSE}
-trips <- aggregate_trips(full)
+trips <- aggregate_trips(full_data)
+
+# incorporate the newly-aggregated trips data in the package
 usethis::use_data(trips, overwrite = TRUE)
 ```
 
 ## Data Aggregation (Users)
 
-To aggregate the full data into a one-row-per-trip dataset, the `aggregate_trips` utility function is provided. Like the `trips` aggregation, the `users` aggregation computes a variety of additional metrics, such as the number of trips per user, the top start and end stations, the average duration per trip, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.
+To aggregate the trips data into a one-row-per-user dataset, the `aggregate_users` utility function is provided. Like the `trips` aggregation, the `users` aggregation computes a variety of additional metrics, such as the number of trips per user, the top start and end stations, the average duration per trip, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.
+
+**EXAMPLE:**
 
 ```{r, eval=FALSE}
-users <- aggregate_trips(trips)
+users <- aggregate_users(trips)
+
+# incorporate the newly-aggregated users data in the package
 usethis::use_data(users, overwrite = TRUE)
 ```
+
+## Data Download
+
+If for some reason you want to download all of the raw files from the website onto your local machine, you can use the `download_files` utility function. The function takes one required parameter, `path`, which specifies the path where the files will be downloaded. The function also takes an optional parameter, `overwrite`, which specifies whether to overwrite the already-existing files at the given path (defaults to `FALSE`). You would only need to set `overwrite = TRUE` if the old files have been changed and you want to replace them, which is unlikely to happen.
+
+**EXAMPLE:**
+
+```{r, eval=FALSE}
+download_files(path = "~/Desktop/raw-files")
+```
+
+Once the `download_files` function is done running, all daily trajectory data files will be available for use in the specified directory.

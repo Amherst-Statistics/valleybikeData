@@ -21,10 +21,6 @@ A tibble of available trajectory data for that specific day.
 Import trajectory data for one day.
 }
 \details{
-Import trajectory data for a specific day. The user can choose to import the raw data,
+Import trajectory data for a given day. The user can choose to import the raw data,
 the clean data (i.e. the raw data minus any anomalous observations), or the anomalous data.
-}
-\examples{
-data_22_may_2019 <- import_day("2019-05-22")
-
 }
