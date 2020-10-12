@@ -442,16 +442,16 @@ summary {
 <p><strong>NOTE:</strong> The code for all utility functions mentioned in this workflow documentation can be found in <a href="https://github.com/Amherst-Statistics/valleybikeData/blob/master/R/import.R">R/import.R</a>.</p>
 <div id="data-location" class="section level2">
 <h2>Data Location</h2>
-<p>The raw day-by-day data files can be found online on <a href="https://nhorton.people.amherst.edu/valleybikes/">Nicholas Horton’s website</a>, as .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the <a href="https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata">inst/extdata directory</a> of the <a href="https://github.com/Amherst-Statistics/valleybikeData">valleybikeData package</a>, although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.</p>
-<p>As of the time of writing, there are 507 daily trajectory data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020.</p>
+<p>The raw day-by-day data files can be found online at <a href="https://nhorton.people.amherst.edu/valleybikes/">Prof. Nicholas Horton’s website</a>, in the form of .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the <a href="https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata">inst/extdata directory</a> of the <a href="https://github.com/Amherst-Statistics/valleybikeData">valleybikeData package</a>, although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.</p>
+<p>At the time of writing, there are 507 daily data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020.</p>
 </div>
 <div id="data-download" class="section level2">
 <h2>Data Download</h2>
-<p>When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by pakage authors, contributors, or anyone with write access to the valleybikeData repository. To do this, the utility function <code>download_data</code> is provided. Please do not perform this process by hand. The <code>download_data</code> function can be used as follows:</p>
+<p>When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by package authors, contributors, or anyone with write access to the valleybikeData repository. To sync the files appropriately, the <code>download_data</code> utility function is provided. Please do not perform this process by hand. The <code>download_data</code> function can be used as follows:</p>
 <ol style="list-style-type: decimal">
 <li><p>Clone the source repository onto your own machine and open it in RStudio.</p></li>
 <li><p>Use <code>devtools::load_all()</code> to load the package namespace. This might take a while.</p></li>
-<li><p>Run <code>download_data</code>. It takes one required parameter, <code>path</code>, which specifies the path where the files will be downloaded. This should be your own local path to the cloned repository’s inst/extdata directory, e.g. “~/git/valleybikeData/inst/extdata”. The function also takes an optional parameter, <code>overwrite</code>, which specifies whether to overwrite the already-existing files in inst/extdata (defaults to <code>FALSE</code> for efficiency). You would only need to set <code>overwrite = TRUE</code> if old files have been changed and you want to replace them.</p>
+<li><p>Run <code>download_data</code>. It takes one required parameter, <code>path</code>, which specifies the path where the files will be downloaded. This should be your own local path to the cloned repository’s inst/extdata directory, e.g. “~/git/valleybikeData/inst/extdata”. The function also takes an optional parameter, <code>overwrite</code>, which specifies whether to overwrite the already-existing files in inst/extdata (defaults to <code>FALSE</code> for efficiency). You would only need to set <code>overwrite = TRUE</code> if the old files have been changed and you want to replace them.</p>
 <p><strong>EXAMPLES:</strong></p>
 <pre class="r"><code># if new files have been added, but no old files were changed
 download_data(path = &quot;~/git/valleybikeData/inst/extdata&quot;)
@@ -463,7 +463,7 @@ download_data(path = &quot;~/git/valleybikeData/inst/extdata&quot;, overwrite = 
 </div>
 <div id="corrupted-files" class="section level2">
 <h2>Corrupted Files</h2>
-<p>6 files currently contain corrupted data, and work is undergoing to fix them. The corrupted files all measure 161 bytes and correspond to the following days:</p>
+<p>6 files currently contain corrupted data, and the process of fixing them is under way. The corrupted files all measure 161 bytes and correspond to the following days:</p>
 <ul>
 <li>2018-09-01</li>
 <li>2018-09-30</li>
@@ -479,35 +479,60 @@ download_data(path = &quot;~/git/valleybikeData/inst/extdata&quot;, overwrite = 
 <p>To import a day’s worth of data from the raw .csv.gz daily files, the <code>import_day</code> utility function is provided. It takes 3 parameters:</p>
 <ol style="list-style-type: decimal">
 <li><code>day</code>: the day for which the data is desired, as a string of the format <code>&quot;YYYY-MM-DD&quot;</code>, e.g. <code>&quot;2019-05-22&quot;</code>. It can be any day between 28 June 2018 to 5 October 2020, although ValleyBike only operates from April to November. Supplying an invalid date, a date for which no data has been recorded, or a date that corresponds to a corrupted file will all yield an empty tibble.</li>
-<li><code>return</code>: the type of data to be returned (one of: <code>&quot;clean&quot;</code>, <code>&quot;anomalous&quot;</code>, <code>&quot;all&quot;</code>).</li>
-<li><code>future_cutoff</code>: the next-day cutoff (in hours) past which observations are categorized as “anomalous”. since rides may last past midnight. Defaults to 24.0 hours.</li>
+<li><code>return</code>: the type of data to be returned (one of: <code>&quot;clean&quot;</code>, <code>&quot;anomalous&quot;</code>, <code>&quot;all&quot;</code>). Defaults to <code>&quot;clean&quot;</code>.</li>
+<li><code>future_cutoff</code>: the next-day cutoff (in hours) past which observations are categorized as “anomalous”. This cutoff is necessary since some rides may last past midnight, which is not an anomaly unless it extends too far into the future. As such, this parameter defaults to 24.0 hours (i.e. only observations up to 24 hours after the given day are considered non-anomalous).</li>
 </ol>
 <p><strong>EXAMPLES:</strong></p>
-<pre class="r"><code>import_day(&quot;2019-04-06&quot;, return = &quot;anomalous&quot;) %&gt;%
-  select(-c(route_id, user_id)) %&gt;%
-  head()
-
-import_day(&quot;2019-04-06&quot;, return = &quot;clean&quot;) %&gt;%
-  select(-c(route_id, user_id)) %&gt;%
+<pre class="r"><code>import_day(&quot;2018-07-25&quot;, return = &quot;anomalous&quot;) %&gt;%
   head()</code></pre>
+<pre><code># A tibble: 6 x 6
+  route_id            user_id       bike  time                longitude latitude
+  &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;dttm&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
+1 route_07_2018@2b42… 97c1f2d5-942… 1131  NA                      -72.6     42.3
+2 route_07_2018@8302… d4ff327d-749… 1322  NA                      -72.7     42.3
+3 route_07_2018@8f2d… f02baa80-e88… 1112  NA                      -72.6     42.3
+4 route_07_2018@eaa6… 20785e9f-15a… 1064  NA                      -72.6     42.2
+5 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-29 00:19:49     -72.7     42.3
+6 route_07_2018@eaa6… 20785e9f-15a… 1064  2018-07-29 00:19:54     -72.7     42.3</code></pre>
+<pre class="r"><code>import_day(&quot;2020-10-05&quot;, return = &quot;clean&quot;) %&gt;%
+  head()</code></pre>
+<pre><code># A tibble: 6 x 6
+# Rowwise: 
+  route_id            user_id       bike  time                longitude latitude
+  &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;dttm&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
+1 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:06     -72.6     42.2
+2 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:11     -72.6     42.2
+3 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:16     -72.6     42.2
+4 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:21     -72.6     42.2
+5 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:26     -72.6     42.2
+6 route_10_2020@5e46… bdb6e51c-f2e… 1399  2020-10-05 14:03:31     -72.6     42.2</code></pre>
 </div>
 <div id="data-import-month" class="section level2">
 <h2>Data Import (Month)</h2>
-<p>To import a month’s worth of data from the raw .csv.gz daily files, the <code>import_month</code> utility function is provided.</p>
-<p><strong>NOTE:</strong> The parameter <code>future_cutoff</code> is set to 24 for all by-month files. If you would like to access data beyond that future cutoff, you will need to import the raw files yourself, with a higher <code>future_cutoff</code> value.</p>
-<pre class="r"><code>april2019 &lt;- import_month(&quot;2019-04&quot;, return = &quot;clean&quot;, future_cutoff = 24)
+<p>To import a month’s worth of data from the raw .csv.gz daily files, the <code>import_month</code> utility function is provided. It uses <code>import_day</code> repeatedly behind the scenes in order to collate the data from all days of the desired month.</p>
+<p>The function takes one required parameter, <code>month</code>, as a string of the format <code>&quot;YYYY-MM&quot;</code>, e.g. <code>&quot;2019-05&quot;</code>. It also takes any optional parameters to forward to <code>import_day</code>, i.e. <code>return</code> and <code>future_cutoff</code>.</p>
+<p><strong>NOTE:</strong> The parameter <code>future_cutoff</code> is set to 24 for all by-month files. If data beyond that future cutoff is needed, one must import the data from scratch using a higher <code>future_cutoff</code> value.</p>
+<pre class="r"><code># DEFAULTS: return = &quot;clean&quot;, future_cutoff = 24
+april2019 &lt;- import_month(&quot;2019-04&quot;)
+
 usethis::use_data(april2019, overwrite = TRUE)</code></pre>
 </div>
 <div id="data-import-full" class="section level2">
 <h2>Data Import (Full)</h2>
-<p>To import all of the raw .csv.gz daily files into a single unified dataframe (of 60+ million observations over 2018-2020), the <code>import_full</code> utility function is provided.</p>
-<pre class="r"><code>full_data &lt;- import_full()</code></pre>
+<p>To import all of the raw .csv.gz daily files into a single unified data frame (of 60+ million observations over 2018-2020), the <code>import_full</code> utility function is provided. Note that it takes quite long to run, and yields a rather large object.</p>
+<pre class="r"><code>full &lt;- import_full()</code></pre>
 </div>
-<div id="data-import-trips" class="section level2">
-<h2>Data Import (Trips)</h2>
-<p>To aggregate the full data into a one-row-per-trip dataset, the <code>aggregate_trips</code> utility function is provided.</p>
-<pre class="r"><code>trips &lt;- aggregate_trips(full_data)
+<div id="data-aggregation-trips" class="section level2">
+<h2>Data Aggregation (Trips)</h2>
+<p>To aggregate the full data into a one-row-per-trip dataset, the <code>aggregate_trips</code> utility function is provided. It computes a variety of additional metrics, such as the trip duration, the presumed start and end stations, the start and end times, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.</p>
+<pre class="r"><code>trips &lt;- aggregate_trips(full)
 usethis::use_data(trips, overwrite = TRUE)</code></pre>
+</div>
+<div id="data-aggregation-users" class="section level2">
+<h2>Data Aggregation (Users)</h2>
+<p>To aggregate the full data into a one-row-per-trip dataset, the <code>aggregate_trips</code> utility function is provided. Like the <code>trips</code> aggregation, the <code>users</code> aggregation computes a variety of additional metrics, such as the number of trips per user, the top start and end stations, the average duration per trip, etc. Please see the package manual, the function code, or the in-build documentation for more information on the variables.</p>
+<pre class="r"><code>users &lt;- aggregate_trips(trips)
+usethis::use_data(users, overwrite = TRUE)</code></pre>
 </div>
 </div>
 
