@@ -75,45 +75,6 @@ download_data <- function(path, overwrite = FALSE) {
 }
 
 # =================================================================================================
-# import_full
-# =================================================================================================
-
-#' Import full trajectory data (raw)
-#'
-#' Import all available trajectory data for the years 2018-2020, in raw format.
-#'
-#' @title import_full
-#'
-#' @return A 60,910,226 x 6 tibble of all available trajectory data.
-#'
-#' @examples
-#' \dontrun{
-#' full_data <- import_full()
-#' }
-#'
-#' @export
-import_full <- function() {
-
-  clust <- parallel::makeCluster(parallel::detectCores())
-
-  path <- system.file("extdata", package = "valleybikeData")
-
-  all_files <- paste0(path, "/", list.files(path, pattern = ".csv.gz$"))
-
-  files <- all_files[file.info(all_files)$size > 1000]
-
-  full_data <- parallel::parLapply(clust, files, data.table::fread, skip = 2) %>%
-    data.table::rbindlist() %>%
-    janitor::clean_names() %>%
-    dplyr::distinct() %>%
-    tibble::as_tibble()
-
-  parallel::stopCluster(clust)
-
-  return(full_data)
-}
-
-# =================================================================================================
 # import_day
 # =================================================================================================
 
@@ -132,7 +93,7 @@ import_full <- function() {
 #' @return A tibble of available trajectory data for that specific day.
 #'
 #' @examples
-#' data_22_may_2019 <- import_day("2019-05-22", return = "clean")
+#' data_22_may_2019 <- import_day("2019-05-22")
 #'
 #' @export
 import_day <- function(day, return = c("clean", "anomalous", "all"), future_cutoff = 24) {
@@ -234,4 +195,205 @@ import_month <- function(month, ...) {
   parallel::stopCluster(clust)
 
   return(data)
+}
+
+# =================================================================================================
+# import_full
+# =================================================================================================
+
+#' Import full trajectory data (raw)
+#'
+#' Import all available trajectory data for the years 2018-2020, in raw format.
+#'
+#' @title import_full
+#'
+#' @return A 65,975,278 x 6 tibble of all available trajectory data.
+#'
+#' @examples
+#' \dontrun{
+#' full_data <- import_full()
+#' }
+#'
+#' @export
+import_full <- function() {
+
+  clust <- parallel::makeCluster(parallel::detectCores())
+
+  path <- system.file("extdata", package = "valleybikeData")
+
+  all_files <- paste0(path, "/", list.files(path, pattern = ".csv.gz$"))
+
+  files <- all_files[file.info(all_files)$size > 1000]
+
+  full_data <- parallel::parLapply(clust, files, data.table::fread, skip = 2,
+                                   colClasses = c("character", "character", "character",
+                                                  "numeric", "numeric", "character")) %>%
+    data.table::rbindlist() %>%
+    janitor::clean_names() %>%
+    dplyr::distinct() %>%
+    tibble::as_tibble()
+
+  parallel::stopCluster(clust)
+
+  return(full_data)
+}
+
+# =================================================================================================
+# aggregate_trips
+# =================================================================================================
+
+#' Aggregate trip data.
+#'
+#' Create a one-row-per-trip dataset from the output of `import_full`.
+#'
+#' @title aggregate_trips
+#'
+#' @param full_data The full trajectory data (as output by `import_full`).
+#'
+#' @return A tibble of all available trip data.
+#'
+#' @examples
+#' \dontrun{
+#' full_data <- import_full()
+#' trips <- aggregate_trips(full_data)
+#' }
+#'
+#' @export
+aggregate_trips <- function(full_data) {
+
+  # using data.table for efficiency
+  data.table::setDT(full_data)
+
+  full_data[, date := fasttime::fastPOSIXct(date)]
+
+  full_data_clean <- na.omit(full_data)
+
+  full_data_clean <- full_data_clean[data.table::between(date, as.POSIXct("2018-06-28"), Sys.Date())]
+
+  trips <- full_data_clean[, list(user_id = data.table::first(user_id),
+                                  bike = data.table::first(bike),
+                                  start_time = data.table::first(date),
+                                  end_time = data.table::last(date),
+                                  start_latitude = data.table::first(latitude),
+                                  start_longitude = data.table::first(longitude),
+                                  end_latitude = data.table::last(latitude),
+                                  end_longitude = data.table::last(longitude)),
+                           by = route_id]
+
+  trips[, duration := as.numeric(end_time) - as.numeric(start_time)]
+
+  station_locations <- dplyr::select(valleybikeData::stations, name, latitude, longitude)
+
+  trips <- trips %>%
+    fuzzyjoin::geo_left_join(
+      station_locations,
+      by = c("start_latitude" = "latitude", "start_longitude" = "longitude"),
+      method = "haversine",
+      unit = "km",
+      max_dist = 0.05
+    ) %>%
+    fuzzyjoin::geo_left_join(
+      station_locations,
+      by = c("end_latitude" = "latitude", "end_longitude" = "longitude"),
+      method = "haversine",
+      unit = "km",
+      max_dist = 0.05
+    ) %>%
+    dplyr::select(
+      route_id,
+      user_id,
+      bike,
+      start_time,
+      end_time,
+      start_station = name.x,
+      start_latitude,
+      start_longitude,
+      end_station = name.y,
+      end_latitude,
+      end_longitude,
+      duration
+    ) %>%
+    tibble::as_tibble()
+
+  return(trips)
+}
+
+# =================================================================================================
+# aggregate_users
+# =================================================================================================
+
+#' Aggregate trip data.
+#'
+#' Create a one-row-per-trip dataset from the output of `import_full`.
+#'
+#' @title aggregate_trips
+#'
+#' @param full_data The full trajectory data (as output by `import_full`).
+#'
+#' @return A tibble of all available trip data.
+#'
+#' @examples
+#' \dontrun{
+#' full_data <- import_full()
+#' trips <- aggregate_trips(full_data)
+#' }
+#'
+#' @export
+aggregate_trips <- function(full_data) {
+
+  # using data.table for efficiency
+  data.table::setDT(full_data)
+
+  full_data[, date := fasttime::fastPOSIXct(date)]
+
+  full_data_clean <- na.omit(full_data)
+
+  full_data_clean <- full_data_clean[data.table::between(date, as.POSIXct("2018-06-28"), Sys.Date())]
+
+  trips <- full_data_clean[, list(user_id = data.table::first(user_id),
+                                  bike = data.table::first(bike),
+                                  start_time = data.table::first(date),
+                                  end_time = data.table::last(date),
+                                  start_latitude = data.table::first(latitude),
+                                  start_longitude = data.table::first(longitude),
+                                  end_latitude = data.table::last(latitude),
+                                  end_longitude = data.table::last(longitude)),
+                           by = route_id]
+
+  trips[, duration := as.numeric(end_time) - as.numeric(start_time)]
+
+  station_locations <- dplyr::select(valleybikeData::stations, name, latitude, longitude)
+
+  trips <- trips %>%
+    fuzzyjoin::geo_left_join(
+      station_locations,
+      by = c("start_latitude" = "latitude", "start_longitude" = "longitude"),
+      method = "haversine",
+      unit = "km",
+      max_dist = 0.05
+    ) %>%
+    fuzzyjoin::geo_left_join(
+      station_locations,
+      by = c("end_latitude" = "latitude", "end_longitude" = "longitude"),
+      method = "haversine",
+      unit = "km",
+      max_dist = 0.05
+    ) %>%
+    dplyr::select(
+      route_id,
+      user_id,
+      bike,
+      start_time,
+      end_time,
+      start_station = name.x,
+      start_latitude,
+      start_longitude,
+      end_station = name.y,
+      end_latitude,
+      end_longitude,
+      duration
+    ) %>%
+    tibble::as_tibble()
+
+  return(trips)
 }

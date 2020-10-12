@@ -1,61 +1,110 @@
 ---
-title: "ValleyBike Data Documentation"
-output: html_document
+title: "ValleyBike Data Import Workflow Documentation"
+author: "Maria-Cristiana Gîrjău"
+date: "12 October 2020"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
 
 ```{r setup, include=FALSE}
 library(dplyr)
-library(valleybike)
+library(valleybikeData)
 
 knitr::opts_chunk$set(
   tidy = FALSE,
-  comment = NA)
+  comment = NA
+)
 ```
 
-# Original Raw Data
+# Documented ValleyBike Data Import Workflow
 
-```{r}
+**NOTE:** The code for all utility functions mentioned in this workflow documentation can be found in [R/import.R](https://github.com/Amherst-Statistics/valleybikeData/blob/master/R/import.R).
 
-```
+## Data Location
 
-# Corrupted Files
+The raw day-by-day data files as they are collected at the source can be found online on [Nicholas Horton's website](https://nhorton.people.amherst.edu/valleybikes/), as .csv and .csv.gz files (i.e. compressed .csv format). For full offline functionality of the package, these files are also stored in the [inst/extdata directory](https://github.com/Amherst-Statistics/valleybikeData/tree/master/inst/extdata) of the [valleybikeData package](https://github.com/Amherst-Statistics/valleybikeData), although note that .csv files are compressed to .csv.gz during the download process in order to reduce their size and standardize the extension used.
 
-510 files in total (by day).
+As of the time of writing, there are 507 daily trajectory data files in total, covering all active ValleyBike days from 28 June 2018 to 5 October 2020. 
 
-The following days (9 days) contain corrupt files (161 bytes):
+## Data Download
+
+When new files are added to the website, they need to be synced with the package (i.e. downloaded to inst/extdata). This can only be done by pakage authors, contributors, or anyone with write access to the valleybikeData repository. To do this, the utility function `download_data` is provided. Please do not perform this process by hand. The `download_data` function can be used as follows:
+
+1. Clone the source repository onto your own machine and open it in RStudio.
+2. Use `devtools::load_all()` to load the package namespace. This might take a while.
+3. Run `download_data`. It takes one required parameter, `path`, which specifies the path where the files will be downloaded. This should be your own local path to the cloned repository's inst/extdata directory, e.g. "~/git/valleybikeData/inst/extdata". The function also takes an optional parameter, `overwrite`, which specifies whether to overwrite the already-existing files in inst/extdata (defaults to `FALSE` for efficiency). You would only need to set `overwrite = TRUE` if old files have been changed and you want to replace them.
+
+    **EXAMPLES:**
+
+    ```{r, eval=FALSE}
+    # if new files have been added, but no old files were changed
+    download_data(path = "~/git/valleybikeData/inst/extdata")
+    
+    # if old files were changed
+    download_data(path = "~/git/valleybikeData/inst/extdata", overwrite = TRUE)
+    ```
+
+Once the `download_data` function is done running, all daily trajectory data files will be available for use.
+
+## Corrupted Files
+
+6 files currently contain corrupted data, and work is undergoing to fix them. The corrupted files all measure 161 bytes and correspond to the following days:
 
 - 2018-09-01
-- 2018-09-02
-- 2018-09-07
-- 2018-09-08
 - 2018-09-30
 - 2018-10-05
 - 2018-10-13
 - 2018-10-20
 - 2019-04-19
 
-They are kept in the `inst/extdata` folder anyway.
+They are kept in the `inst/extdata` folder for completion, and all utility functions that deal with .csv.gz files can recognize and filter out these files.
 
-# Compile all the data yourself
+## Data Import (Day)
 
-This takes long - around 10 min on a MacOS Catalina with 8GB RAM.
+To import a day's worth of data from the raw .csv.gz daily files, the `import_day` utility function is provided. It takes 3 parameters: 
+
+1. `day`: the day for which the data is desired, as a string of the format `"YYYY-MM-DD"`, e.g. `"2019-05-22"`. It can be any day between 28 June 2018 to 5 October 2020, although ValleyBike only operates from April to November. Supplying an invalid date, a date for which no data has been recorded, or a date that corresponds to a corrupted file will all yield an empty tibble.
+2. `return`: the type of data to be returned (one of: `"clean"`, `"anomalous"`, `"all"`).
+3. `future_cutoff`: the next-day cutoff (in hours) past which observations are categorized as "anomalous". since rides may last past midnight. Defaults to 24.0 hours.
+
+**EXAMPLES:**
 
 ```{r, eval=FALSE}
-full_data <- import_full()
-```
-
-## Compile and clean a single daily file
-
-```{r}
 import_day("2019-04-06", return = "anomalous") %>%
+  select(-c(route_id, user_id)) %>%
+  head()
+
+import_day("2019-04-06", return = "clean") %>%
   select(-c(route_id, user_id)) %>%
   head()
 ```
 
-## Compile and clean a by-month file
+## Data Import (Month)
+
+To import a month's worth of data from the raw .csv.gz daily files, the `import_month` utility function is provided.
 
 **NOTE:** The parameter `future_cutoff` is set to 24 for all by-month files. If you would like to access data beyond that future cutoff, you will need to import the raw files yourself, with a higher `future_cutoff` value.
 
 ```{r, eval=FALSE}
 april2019 <- import_month("2019-04", return = "clean", future_cutoff = 24)
+usethis::use_data(april2019, overwrite = TRUE)
+```
+
+## Data Import (Full)
+
+To import all of the raw .csv.gz daily files into a single unified dataframe (of 60+ million observations over 2018-2020), the `import_full` utility function is provided.
+
+```{r, eval=FALSE}
+full_data <- import_full()
+```
+
+## Data Import (Trips)
+
+To aggregate the full data into a one-row-per-trip dataset, the `aggregate_trips` utility function is provided.
+
+```{r, eval=FALSE}
+trips <- aggregate_trips(full_data)
+usethis::use_data(trips, overwrite = TRUE)
 ```
