@@ -46,12 +46,13 @@ stations is also included.
 The package also includes a variety of utility functions for importing
 the raw data:
 
-  - `download_data` (download raw .csv.gz data files from online mirror)
   - `import_day` (import a single day’s worth of data from source)
   - `import_month` (import a month’s worth of data from source)
-  - `import_full` (import all available data from source)
+  - `get_full_data` (get all available data from source)
   - `aggregate_trips` (aggregate a one-row-per-trip dataset)
   - `aggregate_users` (aggregate a one-row-per-user dataset)
+  - `download_files` (download raw .csv.gz data files from online
+    mirror)
 
 For more details on what these functions do and how to use them, please
 see the [Data Import Workflow

@@ -76,9 +76,9 @@ NULL
 #' @keywords datasets
 NULL
 
-#' By-month trajectory data
+#' Monthly trajectory data
 #'
-#' The by-month datasets contain monthly trajectory data for all the months that ValleyBike has
+#' The monthly datasets contain month-by-month trajectory data for all the months that ValleyBike has
 #' been in active operation (normally April-November each year). The point data (latitude, longitude)
 #' was collected during every trip, at 5-second intervals.
 #'
@@ -93,45 +93,45 @@ NULL
 #' }
 #'
 #' @docType data
-#' @name byMonth
+#' @name monthly
 #' @keywords datasets
 NULL
 
-#' @rdname byMonth
+#' @rdname monthly
 "june2018"
-#' @rdname byMonth
+#' @rdname monthly
 "july2018"
-#' @rdname byMonth
+#' @rdname monthly
 "august2018"
-#' @rdname byMonth
+#' @rdname monthly
 "september2018"
-#' @rdname byMonth
+#' @rdname monthly
 "october2018"
-#' @rdname byMonth
+#' @rdname monthly
 "november2018"
-#' @rdname byMonth
+#' @rdname monthly
 "april2019"
-#' @rdname byMonth
+#' @rdname monthly
 "may2019"
-#' @rdname byMonth
+#' @rdname monthly
 "june2019"
-#' @rdname byMonth
+#' @rdname monthly
 "july2019"
-#' @rdname byMonth
+#' @rdname monthly
 "august2019"
-#' @rdname byMonth
+#' @rdname monthly
 "september2019"
-#' @rdname byMonth
+#' @rdname monthly
 "october2019"
-#' @rdname byMonth
+#' @rdname monthly
 "november2019"
-#' @rdname byMonth
+#' @rdname monthly
 "june2020"
-#' @rdname byMonth
+#' @rdname monthly
 "july2020"
-#' @rdname byMonth
+#' @rdname monthly
 "august2020"
-#' @rdname byMonth
+#' @rdname monthly
 "september2020"
-#' @rdname byMonth
+#' @rdname monthly
 "october2020"
