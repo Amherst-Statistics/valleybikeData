@@ -16,6 +16,11 @@
 #'
 #' @return A tibble of available trajectory data for that specific day.
 #'
+#' @examples
+#' \dontrun{
+#' june_28_2018 <- import_day("2018-06-28", return = "all")
+#' }
+#'
 #' @export
 import_day <- function(day, return = c("clean", "anomalous", "all"), future_cutoff = 24) {
 
@@ -93,6 +98,11 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
 #' @param ... Further parameters to pass to `import_day()` (e.g. `return` or `future_cutoff`).
 #'
 #' @return A tibble of available trajectory data for that specific month.
+#'
+#' @examples
+#' \dontrun{
+#' june2018 <- import_month("2018-06")
+#' }
 #'
 #' @export
 import_month <- function(month, ...) {

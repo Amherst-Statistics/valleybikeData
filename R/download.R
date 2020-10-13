@@ -12,6 +12,11 @@
 #' @param path The path where to download the data files.
 #' @param overwrite Whether to overwrite the existing files at the given path. Defaults to FALSE.
 #'
+#' @examples
+#' \dontrun{
+#' download_files(path = "~/Desktop/raw-data")
+#' }
+#'
 #' @export
 download_files <- function(path, overwrite = FALSE) {
 

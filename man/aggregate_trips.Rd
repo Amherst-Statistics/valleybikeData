@@ -18,3 +18,10 @@ Aggregate trip data.
 \details{
 Create a one-row-per-trip dataset from the output of `get_full_data`.
 }
+\examples{
+\dontrun{
+full_data <- get_full_data()
+trips <- aggregate_trips(full_data)
+}
+
+}

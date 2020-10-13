@@ -11,11 +11,12 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 
 [ValleyBike.org](https://www.valleybike.org/) data package.
 
-Check out the [Data Import Workflow
-Documentation](https://amherst-statistics.github.io/valleybikeData/) and
-the [package
-manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf)
-for more details.
+For the reproducible data curation process, check out the [Data Import
+Workflow
+Documentation](https://amherst-statistics.github.io/valleybikeData/).
+For more specific information on the datasets and utility functions
+included, see the [package
+manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf).
 
 ## Installation
 
@@ -45,12 +46,13 @@ stations is also included.
 The package also includes a variety of utility functions for importing
 the raw data:
 
-  - `download_data` (download raw .csv.gz data files from online mirror)
   - `import_day` (import a single day’s worth of data from source)
   - `import_month` (import a month’s worth of data from source)
-  - `import_full` (import all available data from source)
+  - `get_full_data` (get all available data from source)
   - `aggregate_trips` (aggregate a one-row-per-trip dataset)
   - `aggregate_users` (aggregate a one-row-per-user dataset)
+  - `download_files` (download raw .csv.gz data files from online
+    mirror)
 
 For more details on what these functions do and how to use them, please
 see the [Data Import Workflow

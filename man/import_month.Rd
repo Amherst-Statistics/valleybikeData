@@ -21,3 +21,9 @@ Import trajectory data for one month.
 Import trajectory data for a specific month. The user can choose to import the raw data,
 the clean data (i.e. the raw data minus any anomalous observations), or the anomalous data.
 }
+\examples{
+\dontrun{
+june2018 <- import_month("2018-06")
+}
+
+}

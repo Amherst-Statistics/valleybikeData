@@ -18,3 +18,11 @@ Aggregate user data.
 \details{
 Create a one-row-per-user dataset from the output of `aggregate_trips`.
 }
+\examples{
+\dontrun{
+full_data <- get_full_data()
+trips <- aggregate_trips(full_data)
+users <- aggregate_users(trips)
+}
+
+}

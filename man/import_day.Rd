@@ -24,3 +24,9 @@ Import trajectory data for one day.
 Import trajectory data for a given day. The user can choose to import the raw data,
 the clean data (i.e. the raw data minus any anomalous observations), or the anomalous data.
 }
+\examples{
+\dontrun{
+june_28_2018 <- import_day("2018-06-28", return = "all")
+}
+
+}

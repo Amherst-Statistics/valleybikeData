@@ -15,3 +15,9 @@ Get the full trajectory data (raw)
 \details{
 Get all available trajectory data for the years 2018-2020, in raw format.
 }
+\examples{
+\dontrun{
+full_data <- get_full_data()
+}
+
+}

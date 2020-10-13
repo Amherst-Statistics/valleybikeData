@@ -10,6 +10,11 @@
 #'
 #' @return A 65,975,278 x 6 tibble of all available trajectory data.
 #'
+#' @examples
+#' \dontrun{
+#' full_data <- get_full_data()
+#' }
+#'
 #' @export
 get_full_data <- function() {
 
@@ -52,6 +57,12 @@ get_full_data <- function() {
 #' @param full_data The full trajectory data (as output by `get_full_data`).
 #'
 #' @return A tibble of all available trip data.
+#'
+#' @examples
+#' \dontrun{
+#' full_data <- get_full_data()
+#' trips <- aggregate_trips(full_data)
+#' }
 #'
 #' @export
 aggregate_trips <- function(full_data) {
@@ -126,6 +137,13 @@ aggregate_trips <- function(full_data) {
 #' @param trip_data The one-row-per-trip data (as output by `aggregate_trips`).
 #'
 #' @return A tibble of all available user data.
+#'
+#' @examples
+#' \dontrun{
+#' full_data <- get_full_data()
+#' trips <- aggregate_trips(full_data)
+#' users <- aggregate_users(trips)
+#' }
 #'
 #' @export
 aggregate_users <- function(trip_data) {

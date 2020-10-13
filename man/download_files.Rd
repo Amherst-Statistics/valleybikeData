@@ -18,3 +18,9 @@ Download raw data files
 Download all available .csv.gz raw trajectory data files for the years 2018-2020 into a specified
 directory. Intended usage is for updating the files in inst/extdata to mirror those online.
 }
+\examples{
+\dontrun{
+download_files(path = "~/Desktop/raw-data")
+}
+
+}
