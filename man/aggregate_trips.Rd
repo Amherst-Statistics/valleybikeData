@@ -7,7 +7,7 @@
 aggregate_trips(full_data)
 }
 \arguments{
-\item{full_data}{The full trajectory data (as output by `get_full_data`).}
+\item{full_data}{The full trajectory data (as output by \code{get_full_data}).}
 }
 \value{
 A tibble of all available trip data.
@@ -16,7 +16,7 @@ A tibble of all available trip data.
 Aggregate trip data.
 }
 \details{
-Create a one-row-per-trip dataset from the output of `get_full_data`.
+Create a one-row-per-trip dataset from the output of \code{get_full_data}.
 }
 \examples{
 \dontrun{

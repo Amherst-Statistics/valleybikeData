@@ -9,7 +9,7 @@ import_month(month, ...)
 \arguments{
 \item{month}{The month for which to import the data (as a string of the form "YYYY-MM").}
 
-\item{...}{Further parameters to pass to `import_day()` (e.g. `return` or `future_cutoff`).}
+\item{...}{Further parameters to pass to \code{import_day} (e.g. \code{return} or \code{future_cutoff}).}
 }
 \value{
 A tibble of available trajectory data for that specific month.

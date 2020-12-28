@@ -44,4 +44,11 @@ The package also includes a variety of utility functions for importing the raw d
 - `aggregate_users` (aggregate a one-row-per-user dataset)
 - `download_files` (download raw .csv.gz data files from online mirror)
 
-For more details on what these functions do and how to use them, please see the [Data Import Workflow Documentation](https://amherst-statistics.github.io/valleybikeData/).
+Lastly, `get_monthly_dataset` is another important utility function provided by the package. It can be used to access a monthly trajectory dataset through the numeric representation of its corresponding month and year. This is useful when data access must be automated, so writing out dataset names like `"july2019"` becomes inconvenient. Instead, one can call `get_monthly_dataset`:
+
+```{r, eval=FALSE}
+# returns the july2019 dataset
+get_monthly_dataset(month = 7, year = 2019)
+```
+
+For more details on what these functions do and how to use them, please see the [package manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf).

@@ -9,14 +9,14 @@ download_files(path, overwrite = FALSE)
 \arguments{
 \item{path}{The path where to download the data files.}
 
-\item{overwrite}{Whether to overwrite the existing files at the given path. Defaults to FALSE.}
+\item{overwrite}{Whether to overwrite the existing files at the given path. Defaults to \code{FALSE}.}
 }
 \description{
 Download raw data files
 }
 \details{
 Download all available .csv.gz raw trajectory data files for the years 2018-2020 into a specified
-directory. Intended usage is for updating the files in inst/extdata to mirror those online.
+directory.
 }
 \examples{
 \dontrun{
