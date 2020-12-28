@@ -36,7 +36,7 @@ get_monthly_dataset <- function(month, year) {
 
   env <- new.env()
   tryCatch({
-    name <- data(list = dataset_name, envir = env)[1]
+    name <- data(list = dataset_name, package = "valleybikeData", envir = env)[1]
   }, warning = function(w) stop("No data available for ", month.name[month], " ", year))
   data <- env[[name]]
 
