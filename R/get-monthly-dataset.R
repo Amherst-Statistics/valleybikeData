@@ -7,7 +7,7 @@
 #' Get the trajectory dataset for one month using numeric parameters for the month and year.
 #' The \code{month} parameter can be any number from 4 to 11 (since ValleyBike doesn't run during the
 #' winter months), and the \code{year} parameter can be any valid year during which ValleyBike was
-#' active (i.e., 2018, 2019, 2020).
+#' active (i.e., 2018, 2019, 2020, 2021).
 #'
 #' @title get_monthly_dataset
 #'

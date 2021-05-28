@@ -31,7 +31,7 @@ get_full_data <- function() {
 
   clust <- parallel::makeCluster(parallel::detectCores())
 
-  full_data <- parallel::parLapply(clust, files, data.table::fread, skip = 2,
+  full_data <- parallel::parLapply(clust, file_urls, data.table::fread, skip = 2,
                                    colClasses = c("character", "character", "character",
                                                   "numeric", "numeric", "character")) %>%
     data.table::rbindlist() %>%

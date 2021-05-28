@@ -1,6 +1,6 @@
 Package: valleybikeData
 Title: ValleyBike.org Data Package
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     c(person(given = "Nicholas J.",
              family = "Horton",
@@ -10,7 +10,7 @@ Authors@R:
              family = "Girjau",
              role = c("aut", "cre"),
              email = "mgirjau21@amherst.edu"))
-Description: All currently-available ValleyBike.org point data for 2018-2020, as well as some
+Description: All currently-available ValleyBike.org point data for 2018-2021, as well as some
     aggregated datasets.
 Encoding: UTF-8
 LazyData: true

@@ -1,7 +1,7 @@
-#' ValleyBike trips over 2018-2020
+#' ValleyBike trips over 2018-2021
 #'
 #' This data set is an aggregated one-row-per-trip version of the original
-#' point-in-time ValleyBike data for the years 2018, 2019, and 2020.
+#' point-in-time ValleyBike data for the years 2018, 2019, 2020, and 2021.
 #'
 #' @section Variables:
 #' \itemize{
@@ -28,7 +28,7 @@ NULL
 
 #' ValleyBike user statistics over 2018-2019
 #'
-#' This dataset is contains anonymous statistics for ValleyBike users in 2018, 2019, and 2020.
+#' This dataset contains anonymous statistics for ValleyBike users in 2018, 2019, 2020, and 2021.
 #'
 #' @section Variables:
 #' \itemize{
@@ -55,7 +55,7 @@ NULL
 
 #' ValleyBike stations (as of 2020)
 #'
-#' This dataset is contains information on the 54 ValleyBike stations.
+#' This dataset is contains information on 54 ValleyBike stations.
 #'
 #' @section Variables:
 #' \itemize{
@@ -79,7 +79,7 @@ NULL
 #' Monthly trajectory data
 #'
 #' The monthly datasets contain month-by-month trajectory data for all the months that ValleyBike has
-#' been in active operation (normally April-November each year). The point data (latitude, longitude)
+#' been in active operation. The point data (latitude, longitude)
 #' was collected during every trip, at 5-second intervals.
 #'
 #' @section Variables:
@@ -135,3 +135,17 @@ NULL
 "september2020"
 #' @rdname monthly
 "october2020"
+#' @rdname monthly
+"november2020"
+#' @rdname monthly
+"december2020"
+#' @rdname monthly
+"january2021"
+#' @rdname monthly
+"february2021"
+#' @rdname monthly
+"march2021"
+#' @rdname monthly
+"april2021"
+#' @rdname monthly
+"may2021"
