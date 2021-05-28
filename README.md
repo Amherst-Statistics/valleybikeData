@@ -34,24 +34,24 @@ in month-by-month chunks, as well as additional aggregates data on
 individual users and trips. A dataset containing all permanent bikeshare
 stations is also included.
 
-| Dataset Name                                                                                                                                                                                                                                                                 | Description                                                                                                                          |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `trips`                                                                                                                                                                                                                                                                      | one-row-per-trip data, including variables like duration, start and end times, start and end stations, etc.                          |
-| `stations`                                                                                                                                                                                                                                                                   | data on all permanent ValleyBike stations                                                                                            |
-| `users`                                                                                                                                                                                                                                                                      | one-row-per-user data, including variables like total number of trips, time and date of first trip, top start and end stations, etc. |
-| `june2018`, `july2018`, `august2018`, `september2018`, `october2018`, `november2018`, `april2019`, `may2019`, `june2019`, `july2019`, `august2019`, `september2019`, `october2019`, `november2019`, `june2020`, `july2020`, `august2020`, `september2020`, and `october2020` | by-month trajectory data for all 19 active months of ValleyBike, collected at 5-second intervals during each trip                    |
+| Dataset Name                                                                                                                                                                                                                                                           | Description                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `trips`                                                                                                                                                                                                                                                                | one-row-per-trip data, including variables like duration, start and end times, start and end stations, etc.                          |
+| `stations`                                                                                                                                                                                                                                                             | data on all permanent ValleyBike stations                                                                                            |
+| `users`                                                                                                                                                                                                                                                                | one-row-per-user data, including variables like total number of trips, time and date of first trip, top start and end stations, etc. |
+| `june2018`, `july2018`, `august2018`, `september2018`, `october2018`, `november2018`, `april2019`, `may2019`, `june2019`, `july2019`, `august2019`, `september2019`, `october2019`, `november2019`, `june2020`, `july2020`, `august2020`, `september2020`, … `may2021` | by-month trajectory data for all active months of ValleyBike, collected at 5-second intervals during each trip                       |
 
 ## Functions
 
 The package also includes a variety of utility functions for importing
 the raw data:
 
--   `import_day` (import a single day’s worth of data from source)
--   `import_month` (import a month’s worth of data from source)
--   `get_full_data` (get all available data from source)
--   `aggregate_trips` (aggregate a one-row-per-trip dataset)
--   `aggregate_users` (aggregate a one-row-per-user dataset)
--   `download_files` (download raw .csv.gz data files from online
+  - `import_day` (import a single day’s worth of data from source)
+  - `import_month` (import a month’s worth of data from source)
+  - `get_full_data` (get all available data from source)
+  - `aggregate_trips` (aggregate a one-row-per-trip dataset)
+  - `aggregate_users` (aggregate a one-row-per-user dataset)
+  - `download_files` (download raw .csv.gz data files from online
     mirror)
 
 Lastly, `get_monthly_dataset` is another important utility function
