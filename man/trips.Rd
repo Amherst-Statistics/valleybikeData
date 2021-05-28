@@ -21,7 +21,7 @@ point-in-time ValleyBike data for the years 2018, 2019, and 2020.
  \item user_id (character), the rider's unique user id
  \item bike (character), unique bike id
  \item start_time (datetime), the trip's starting date-time (EDT)
- \item end_time (datetime), the trip's ending date-time (EDT)
+ \item end_time (datetime), the trip's ending date-time (EDT)z
  \item start_station (character), the trip's starting station
  \item start_latitude (double), the trip's starting latitude
  \item start_longitude (double), the trip's starting longitude

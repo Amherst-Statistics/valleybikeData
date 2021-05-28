@@ -95,7 +95,7 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
 #' @title import_month
 #'
 #' @param month The month for which to import the data (as a string of the form "YYYY-MM").
-#' @param ... Further parameters to pass to `import_day()` (e.g. `return` or `future_cutoff`).
+#' @param ... Further parameters to pass to \code{import_day} (e.g. \code{return} or \code{future_cutoff}).
 #'
 #' @return A tibble of available trajectory data for that specific month.
 #'

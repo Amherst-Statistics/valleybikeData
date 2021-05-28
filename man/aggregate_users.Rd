@@ -7,7 +7,7 @@
 aggregate_users(trip_data)
 }
 \arguments{
-\item{trip_data}{The one-row-per-trip data (as output by `aggregate_trips`).}
+\item{trip_data}{The one-row-per-trip data (as output by \code{aggregate_trips}).}
 }
 \value{
 A tibble of all available user data.
@@ -16,7 +16,7 @@ A tibble of all available user data.
 Aggregate user data.
 }
 \details{
-Create a one-row-per-user dataset from the output of `aggregate_trips`.
+Create a one-row-per-user dataset from the output of \code{aggregate_trips}.
 }
 \examples{
 \dontrun{

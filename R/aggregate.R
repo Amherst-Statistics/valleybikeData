@@ -50,11 +50,11 @@ get_full_data <- function() {
 #
 #' Aggregate trip data.
 #'
-#' Create a one-row-per-trip dataset from the output of `get_full_data`.
+#' Create a one-row-per-trip dataset from the output of \code{get_full_data}.
 #'
 #' @title aggregate_trips
 #'
-#' @param full_data The full trajectory data (as output by `get_full_data`).
+#' @param full_data The full trajectory data (as output by \code{get_full_data}).
 #'
 #' @return A tibble of all available trip data.
 #'
@@ -130,11 +130,11 @@ aggregate_trips <- function(full_data) {
 #
 #' Aggregate user data.
 #'
-#' Create a one-row-per-user dataset from the output of `aggregate_trips`.
+#' Create a one-row-per-user dataset from the output of \code{aggregate_trips}.
 #'
 #' @title aggregate_users
 #'
-#' @param trip_data The one-row-per-trip data (as output by `aggregate_trips`).
+#' @param trip_data The one-row-per-trip data (as output by \code{aggregate_trips}).
 #'
 #' @return A tibble of all available user data.
 #'
