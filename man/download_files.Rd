@@ -15,7 +15,7 @@ download_files(path, overwrite = FALSE)
 Download raw data files
 }
 \details{
-Download all available .csv.gz raw trajectory data files for the years 2018-2020 into a specified
+Download all available .csv.gz raw trajectory data files for the years 2018-2021 into a specified
 directory.
 }
 \examples{

@@ -1,7 +1,7 @@
 Package: valleybikeData
 Title: ValleyBike.org Data Package
 Version: 0.0.2
-Authors@R: 
+Authors@R:
     c(person(given = "Nicholas J.",
              family = "Horton",
              role = c("aut"),
@@ -9,23 +9,25 @@ Authors@R:
       person(given = "Maria-Cristiana",
              family = "Girjau",
              role = c("aut", "cre"),
-             email = "mgirjau21@amherst.edu"))
+             email = "mg4345@columbia.edu"))
 Description: All currently-available ValleyBike.org point data for 2018-2021, as well as some
     aggregated datasets.
 Encoding: UTF-8
 LazyData: true
-Imports: data.table,
-         dplyr,
-         fasttime,
-         fuzzyjoin,
-         janitor,
-         magrittr,
-         readr,
-         R.utils,
-         parallel,
-         stringr,
-         tibble
-RoxygenNote: 7.1.0
+LazyDataCompression: gzip
+Imports:
+    data.table,
+    dplyr,
+    fasttime,
+    fuzzyjoin,
+    janitor,
+    magrittr,
+    readr,
+    R.utils,
+    parallel,
+    stringr,
+    tibble
+RoxygenNote: 7.1.1
 License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)

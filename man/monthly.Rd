@@ -22,6 +22,13 @@
 \alias{august2020}
 \alias{september2020}
 \alias{october2020}
+\alias{november2020}
+\alias{december2020}
+\alias{january2021}
+\alias{february2021}
+\alias{march2021}
+\alias{april2021}
+\alias{may2021}
 \title{Monthly trajectory data}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 36773 rows and 6 columns.
@@ -61,6 +68,20 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2681825 rows and 6 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 361804 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1013172 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 363270 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 296398 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 140010 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1605535 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2349597 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3622175 rows and 6 columns.
 }
 \usage{
 june2018
@@ -100,10 +121,24 @@ august2020
 september2020
 
 october2020
+
+november2020
+
+december2020
+
+january2021
+
+february2021
+
+march2021
+
+april2021
+
+may2021
 }
 \description{
 The monthly datasets contain month-by-month trajectory data for all the months that ValleyBike has
-been in active operation (normally April-November each year). The point data (latitude, longitude)
+been in active operation. The point data (latitude, longitude)
 was collected during every trip, at 5-second intervals.
 }
 \section{Variables}{

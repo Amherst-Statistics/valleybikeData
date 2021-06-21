@@ -33,17 +33,18 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
   url <- paste0(root, filename)
 
   # check that the daily file exists
-  tryCatch({
-    data <- data.table::fread(url, skip = 2, colClasses = "character")
-  }, error = function(e) {
+  data_raw <- tryCatch({
+    data.table::fread(url, skip = 2, colClasses = "character")
+  }, error = function(e) tibble::tibble())
+
+  if (nrow(data_raw) == 0) {
     message("ERROR: No available data for day ", day, ".\n", "Returning empty tibble.")
-    return(tibble::tibble())
-  })
+    return(data_raw)
+  }
 
   # suppress warnings for readr parsing failures
   suppressWarnings({
-
-    data_parsed <- data %>%
+    data_parsed <- data_raw %>%
       janitor::clean_names() %>%
       dplyr::select(route_id, user_id, bike, time = date, longitude, latitude) %>%
       dplyr::mutate(
@@ -54,12 +55,11 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
         longitude = readr::parse_number(longitude),
         latitude = readr::parse_number(latitude)
       ) %>%
-      dplyr::distinct() %>%
-      tibble::as_tibble()
+      dplyr::distinct()
   })
 
   if (return[1] == "all") {
-    return(data_parsed)
+    return(tibble::as_tibble(data_parsed))
   }
 
   day_POSIXct <- fasttime::fastPOSIXct(day)
@@ -75,12 +75,12 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
     )
 
   if (return[1] == "clean") {
-    return(data_clean)
+    return(tibble::as_tibble(data_clean))
   }
 
   data_anomalous <- dplyr::anti_join(data_parsed, data_clean, by = c("route_id", "time"))
 
-  return(data_anomalous)
+  return(tibble::as_tibble(data_anomalous))
 }
 
 # =================================================================================================
@@ -114,6 +114,7 @@ import_month <- function(month, ...) {
   parallel::clusterExport(clust, c("import_day", "%>%"))
 
   data <- parallel::parLapply(clust, days, import_day, ...) %>%
+    lapply(function(df) if (nrow(df) == 0) NULL else df) %>%
     data.table::rbindlist() %>%
     dplyr::distinct() %>%
     tibble::as_tibble()

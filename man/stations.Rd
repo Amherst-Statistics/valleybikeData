@@ -11,7 +11,7 @@ A tibble
 stations
 }
 \description{
-This dataset is contains information on the 54 ValleyBike stations.
+This dataset is contains information on 54 ValleyBike stations.
 }
 \section{Variables}{
 

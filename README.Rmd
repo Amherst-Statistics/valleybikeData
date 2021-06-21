@@ -31,7 +31,7 @@ The package includes all currently-available ValleyBike trajectory data in month
 | `trips` | one-row-per-trip data, including variables like duration, start and end times, start and end stations, etc. |
 | `stations` | data on all permanent ValleyBike stations |
 | `users` | one-row-per-user data, including variables like total number of trips, time and date of first trip, top start and end stations, etc. |
-| `june2018`, `july2018`, `august2018`, `september2018`, `october2018`, `november2018`, `april2019`, `may2019`, `june2019`, `july2019`, `august2019`, `september2019`, `october2019`, `november2019`, `june2020`, `july2020`, `august2020`, `september2020`, ... `may2021` | by-month trajectory data for all active months of ValleyBike, collected at 5-second intervals during each trip |
+| `june2018` up to `november2018`, `april2019` up to `november2019`, `june2020` up to `december2020`, and `january2021` up to `may2021` | by-month trajectory data for all active months of ValleyBike, collected at 5-second intervals during each trip |
 
 ## Functions
 

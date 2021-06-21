@@ -64,6 +64,8 @@ get_full_data <- function() {
 #' trips <- aggregate_trips(full_data)
 #' }
 #'
+#' @import data.table
+#' 
 #' @export
 aggregate_trips <- function(full_data) {
 

@@ -11,7 +11,7 @@ A tibble
 users
 }
 \description{
-This dataset is contains anonymous statistics for ValleyBike users in 2018, 2019, and 2020.
+This dataset contains anonymous statistics for ValleyBike users in 2018, 2019, 2020, and 2021.
 }
 \section{Variables}{
 
