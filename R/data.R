@@ -26,7 +26,7 @@
 #' @keywords datasets
 NULL
 
-#' ValleyBike user statistics over 2018-2019
+#' ValleyBike user statistics over 2018-2021
 #'
 #' This dataset contains anonymous statistics for ValleyBike users in 2018, 2019, 2020, and 2021.
 #'
