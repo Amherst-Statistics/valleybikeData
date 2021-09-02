@@ -1,12 +1,12 @@
 
-# valleybikeData <img src="man/figures/logo.png" title="logo created with hexSticker" width="160px" align="right"/>
+# valleybikeData <img src="man/figures/logo.png" title="Logo created with hexSticker" width="160px" align="right"/>
 
 <!-- badges: start -->
 
 [![R build
 status](https://github.com/Amherst-Statistics/valleybikeData/workflows/R-CMD-check/badge.svg)](https://github.com/Amherst-Statistics/valleybikeData/actions)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 [ValleyBike.org](https://www.valleybike.org/) data package.
@@ -26,6 +26,18 @@ Install the development version from GitHub:
 devtools::install_github("Amherst-Statistics/valleybikeData")
 library(valleybikeData)
 ```
+
+## Usage
+
+Due to issues on certain platforms, the `valleybikeData` package does
+not use lazy data. As such, you need to manually load in the data
+anytime you want to use it using `utils::data()`, for example:
+
+``` r
+data("september2019", envir = environment())
+```
+
+Please see `?data` for more details and best practices.
 
 ## Datasets
 
@@ -51,7 +63,7 @@ the raw data:
   - `get_full_data` (get all available data from source)
   - `aggregate_trips` (aggregate a one-row-per-trip dataset)
   - `aggregate_users` (aggregate a one-row-per-user dataset)
-  - `download_files` (download raw .csv.gz data files from online
+  - `download_files` (download raw .csv.gz data files from the online
     mirror)
 
 Lastly, `get_monthly_dataset` is another important utility function
@@ -68,4 +80,4 @@ get_monthly_dataset(month = 7, year = 2019)
 
 For more details on what these functions do and how to use them, please
 see the [package
-manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_0.0.1.pdf).
+manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_1.0.0.pdf).
