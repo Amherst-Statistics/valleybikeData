@@ -131,7 +131,7 @@ NULL
 #' @usage data("august2019")
 "august2019"
 #' @rdname monthly
-#' @usage data("june2018")
+#' @usage data("september2019")
 "september2019"
 #' @rdname monthly
 #' @usage data("october2019")
