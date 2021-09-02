@@ -3,7 +3,7 @@
 \docType{data}
 \name{users}
 \alias{users}
-\title{ValleyBike user statistics over 2018-2019}
+\title{ValleyBike user statistics over 2018-2021}
 \format{
 A tibble
 }
