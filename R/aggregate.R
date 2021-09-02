@@ -65,7 +65,7 @@ get_full_data <- function() {
 #' }
 #'
 #' @import data.table
-#' 
+#'
 #' @export
 aggregate_trips <- function(full_data) {
 
@@ -74,7 +74,7 @@ aggregate_trips <- function(full_data) {
 
   full_data[, date := fasttime::fastPOSIXct(date)]
 
-  full_data_clean <- na.omit(full_data)
+  full_data_clean <- stats::na.omit(full_data)
 
   full_data_clean <- full_data_clean[data.table::between(date, as.POSIXct("2018-06-28"), Sys.Date())]
 
@@ -90,7 +90,8 @@ aggregate_trips <- function(full_data) {
 
   trips[, duration := as.numeric(end_time) - as.numeric(start_time)]
 
-  station_locations <- dplyr::select(valleybikeData::stations, name, latitude, longitude)
+  utils::data("stations", package = "valleybikeData", envir = environment())
+  station_locations <- dplyr::select(stations, name, latitude, longitude)
 
   trips <- trips %>%
     fuzzyjoin::geo_left_join(
@@ -156,7 +157,7 @@ aggregate_users <- function(trip_data) {
       trips = dplyr::n(),
       min_trip_duration = min(duration, na.rm = TRUE),
       mean_trip_duration = mean(duration, na.rm = TRUE),
-      median_trip_duration = median(duration, na.rm = TRUE),
+      median_trip_duration = stats::median(duration, na.rm = TRUE),
       max_trip_duration = max(duration, na.rm = TRUE),
       first_trip_time = min(start_time, na.rm = TRUE),
       last_trip_time = max(start_time, na.rm = TRUE),

@@ -21,7 +21,7 @@
 #'
 #' @docType data
 #' @name trips
-#' @usage trips
+#' @usage data("trips")
 #' @format A tibble
 #' @keywords datasets
 NULL
@@ -48,7 +48,7 @@ NULL
 #'
 #' @docType data
 #' @name users
-#' @usage users
+#' @usage data("users")
 #' @format A tibble
 #' @keywords datasets
 NULL
@@ -71,7 +71,7 @@ NULL
 #'
 #' @docType data
 #' @name stations
-#' @usage stations
+#' @usage data("stations")
 #' @format A tibble
 #' @keywords datasets
 NULL
@@ -98,54 +98,80 @@ NULL
 NULL
 
 #' @rdname monthly
+#' @usage data("june2018")
 "june2018"
 #' @rdname monthly
+#' @usage data("july2018")
 "july2018"
 #' @rdname monthly
+#' @usage data("august2018")
 "august2018"
 #' @rdname monthly
+#' @usage data("september2018")
 "september2018"
 #' @rdname monthly
+#' @usage data("october2018")
 "october2018"
 #' @rdname monthly
+#' @usage data("november2018")
 "november2018"
 #' @rdname monthly
+#' @usage data("april2019")
 "april2019"
 #' @rdname monthly
+#' @usage data("may2019")
 "may2019"
 #' @rdname monthly
+#' @usage data("june2019")
 "june2019"
 #' @rdname monthly
+#' @usage data("july2019")
 "july2019"
 #' @rdname monthly
+#' @usage data("august2019")
 "august2019"
 #' @rdname monthly
+#' @usage data("june2018")
 "september2019"
 #' @rdname monthly
+#' @usage data("october2019")
 "october2019"
 #' @rdname monthly
+#' @usage data("november2019")
 "november2019"
 #' @rdname monthly
+#' @usage data("june2020")
 "june2020"
 #' @rdname monthly
+#' @usage data("july2020")
 "july2020"
 #' @rdname monthly
+#' @usage data("august2020")
 "august2020"
 #' @rdname monthly
+#' @usage data("september2020")
 "september2020"
 #' @rdname monthly
+#' @usage data("october2020")
 "october2020"
 #' @rdname monthly
+#' @usage data("november2020")
 "november2020"
 #' @rdname monthly
+#' @usage data("december2020")
 "december2020"
 #' @rdname monthly
+#' @usage data("january2021")
 "january2021"
 #' @rdname monthly
+#' @usage data("february2021")
 "february2021"
 #' @rdname monthly
+#' @usage data("march2021")
 "march2021"
 #' @rdname monthly
+#' @usage data("april2021")
 "april2021"
 #' @rdname monthly
+#' @usage data("may2021")
 "may2021"

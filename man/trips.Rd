@@ -8,7 +8,7 @@
 A tibble
 }
 \usage{
-trips
+data("trips")
 }
 \description{
 This data set is an aggregated one-row-per-trip version of the original

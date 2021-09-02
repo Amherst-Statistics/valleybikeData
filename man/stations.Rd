@@ -8,7 +8,7 @@
 A tibble
 }
 \usage{
-stations
+data("stations")
 }
 \description{
 This dataset is contains information on 54 ValleyBike stations.

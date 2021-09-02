@@ -53,5 +53,5 @@ download_files <- function(path, overwrite = FALSE) {
     stop("Download aborted.")
   }
 
-  mapply(download.file, urls, destination_files)
+  mapply(utils::download.file, urls, destination_files)
 }

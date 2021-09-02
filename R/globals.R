@@ -1,0 +1,22 @@
+utils::globalVariables(c(
+  "user_id",
+  "bike",
+  "latitude",
+  "longitude",
+  "route_id",
+  "duration",
+  "time",
+  "start_time",
+  "end_time",
+  "stations",
+  "name",
+  "name.x",
+  "name.y",
+  "start_latitude",
+  "start_longitude",
+  "end_latitude",
+  "end_longitude",
+  "start_station",
+  "end_station",
+  "."
+))

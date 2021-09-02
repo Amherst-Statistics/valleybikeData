@@ -8,7 +8,7 @@
 A tibble
 }
 \usage{
-users
+data("users")
 }
 \description{
 This dataset contains anonymous statistics for ValleyBike users in 2018, 2019, 2020, and 2021.

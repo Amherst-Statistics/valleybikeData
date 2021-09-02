@@ -65,7 +65,7 @@ import_day <- function(day, return = c("clean", "anomalous", "all"), future_cuto
   day_POSIXct <- fasttime::fastPOSIXct(day)
 
   data_clean <- data_parsed %>%
-    na.omit() %>%
+    stats::na.omit() %>%
     dplyr::rowwise() %>%
     dplyr::filter(
       # allow observations at most 24 hours in the future (for rides lasting past midnight)

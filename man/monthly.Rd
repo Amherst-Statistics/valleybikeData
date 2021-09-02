@@ -84,57 +84,57 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3622175 rows and 6 columns.
 }
 \usage{
-june2018
+data("june2018")
 
-july2018
+data("july2018")
 
-august2018
+data("august2018")
 
-september2018
+data("september2018")
 
-october2018
+data("october2018")
 
-november2018
+data("november2018")
 
-april2019
+data("april2019")
 
-may2019
+data("may2019")
 
-june2019
+data("june2019")
 
-july2019
+data("july2019")
 
-august2019
+data("august2019")
 
-september2019
+data("june2018")
 
-october2019
+data("october2019")
 
-november2019
+data("november2019")
 
-june2020
+data("june2020")
 
-july2020
+data("july2020")
 
-august2020
+data("august2020")
 
-september2020
+data("september2020")
 
-october2020
+data("october2020")
 
-november2020
+data("november2020")
 
-december2020
+data("december2020")
 
-january2021
+data("january2021")
 
-february2021
+data("february2021")
 
-march2021
+data("march2021")
 
-april2021
+data("april2021")
 
-may2021
+data("may2021")
 }
 \description{
 The monthly datasets contain month-by-month trajectory data for all the months that ValleyBike has
