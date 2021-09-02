@@ -30,8 +30,8 @@ library(valleybikeData)
 ## Usage
 
 Due to issues on certain platforms, the `valleybikeData` package does
-not use lazy data. As such, you need to manually load in the data
-anytime you want to use it using `utils::data()`, for example:
+not use lazy data. As such, you need to manually load in datasets
+anytime you want to use them using `utils::data()`, for example:
 
 ``` r
 data("september2019", envir = environment())
@@ -39,12 +39,16 @@ data("september2019", envir = environment())
 
 Please see `?data` for more details and best practices.
 
+For more information on the datasets and utility functions included in
+the package, please see the
+[manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_1.0.0.pdf).
+
 ## Datasets
 
-The package includes all currently-available ValleyBike trajectory data
-in month-by-month chunks, as well as additional aggregates data on
-individual users and trips. A dataset containing all permanent bikeshare
-stations is also included.
+The `valleybikeData` package includes all currently-available ValleyBike
+**trajectory data** in month-by-month chunks, as well as additional
+aggregated data on individual **users** and **trips**. A dataset
+containing all permanent bikeshare **stations** is also included.
 
 | Dataset Name                                                                                                                          | Description                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -55,29 +59,28 @@ stations is also included.
 
 ## Functions
 
-The package also includes a variety of utility functions for importing
-the raw data:
+### Data Import Functions
+
+The `valleybikeData` package includes a variety of workflow functions
+for importing the raw data:
 
   - `import_day` (import a single day’s worth of data from source)
   - `import_month` (import a month’s worth of data from source)
   - `get_full_data` (get all available data from source)
   - `aggregate_trips` (aggregate a one-row-per-trip dataset)
   - `aggregate_users` (aggregate a one-row-per-user dataset)
-  - `download_files` (download raw .csv.gz data files from the online
-    mirror)
+  - `download_files` (download raw .csv.gz data files from source)
 
-Lastly, `get_monthly_dataset` is another important utility function
-provided by the package. It can be used to access a monthly trajectory
-dataset through the numeric representation of its corresponding month
-and year. This is useful when data access must be automated, so writing
-out dataset names like `"july2019"` becomes inconvenient. Instead, one
-can call `get_monthly_dataset`:
+### Utility Functions
+
+The `get_monthly_dataset` function is an important utility provided by
+the `valleybikeData` package. It can be used to access a monthly
+trajectory dataset through numeric representations of the corresponding
+month and year. This is particularly useful when data access must be
+automated, so writing out dataset names like `"july2019"` becomes
+inconvenient:
 
 ``` r
 # returns the july2019 dataset
 get_monthly_dataset(month = 7, year = 2019)
 ```
-
-For more details on what these functions do and how to use them, please
-see the [package
-manual](https://github.com/Amherst-Statistics/valleybikeData/blob/master/valleybikeData_1.0.0.pdf).
