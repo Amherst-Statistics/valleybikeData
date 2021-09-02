@@ -13,8 +13,7 @@ Authors@R:
 Description: All currently-available ValleyBike.org point data for 2018-2021, as well as some
     aggregated datasets.
 Encoding: UTF-8
-LazyData: true
-LazyDataCompression: gzip
+LazyData: false
 Imports:
     data.table,
     dplyr,
